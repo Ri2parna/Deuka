@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, Image, View } from "react-native";
 import SearchBars from "../components/components.SearchBar";
 function SearchScreen() {
   return (
@@ -15,7 +15,11 @@ function SearchScreen() {
 function ProfileScreen() {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Profile Screen</Text>
+      <Image
+        style={{ height: 300, width: 400 }}
+        source={require("../assets/nopathyet.jpg")}
+      />
+      <Text>Haven't programed the path yet.</Text>
     </View>
   );
 }

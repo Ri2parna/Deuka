@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Dimensions, Text, View, Image, StyleSheet } from "react-native";
+import { Text, View, Image, StyleSheet, Dimensions } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-const BlogCard = () => {
+const OldBlogCard = () => {
   return (
     <TouchableOpacity style={styles.cardLayout}>
       <View style={{ width: "70%" }}>
@@ -12,6 +12,7 @@ const BlogCard = () => {
             bigger
           </Text>
         </View>
+
         <Text>Subtitle of the blog</Text>
         <View
           style={{
@@ -37,15 +38,14 @@ const BlogCard = () => {
 const styles = StyleSheet.create({
   cardLayout: {
     backgroundColor: "white",
-    marginHorizontal: 8,
-    marginBottom: 1.5,
-    paddingHorizontal: 16,
+    marginHorizontal: 4,
     padding: 12,
+    borderRadius: 16,
+    elevation: 1,
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: "space-between",
-    borderRadius: 2,
+    width: Dimensions.get("window").width * 0.9,
   },
 });
-export default BlogCard;
+export default OldBlogCard;

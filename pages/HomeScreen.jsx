@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import * as Font from "expo-font";
 import { Text, StatusBar, View, ScrollView, StyleSheet } from "react-native";
 import BlogCard from "../components/BlogCard";
+import OldBlogCard from "../components/OldBlogCard";
 import GreetingSection from "../components/Greeting";
 
 function HeaderTitle({ title }) {
@@ -19,7 +20,7 @@ function HeaderTitle({ title }) {
   if (!fontsLoaded) return <AppLoading />;
   else {
     return (
-      <View style={{ paddingHorizontal: 16, marginTop: 16 }}>
+      <View style={{ paddingHorizontal: 16, marginTop: 16, marginBottom: 8 }}>
         <Text style={{ fontFamily: "Publico-Regular", fontSize: 21 }}>
           {title}
         </Text>
@@ -34,14 +35,23 @@ function HomeScreen({ navigation }) {
       showsVerticalScrollIndicator={false}
     >
       <GreetingSection />
+      <HeaderTitle title="For You" />
+      <ScrollView
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        style={{ flex: 1, flexDirection: "row" }}
+      >
+        <OldBlogCard />
+        <OldBlogCard />
+        <OldBlogCard />
+        <OldBlogCard />
+      </ScrollView>
       <HeaderTitle title="Popular" />
       <BlogCard />
       <BlogCard />
       <BlogCard />
-      <HeaderTitle title="For You" />
       <BlogCard />
-      <BlogCard />
-      <BlogCard />
+
       <View style={{ height: 50 }} />
     </ScrollView>
   );

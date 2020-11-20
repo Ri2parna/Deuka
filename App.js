@@ -3,9 +3,15 @@ import { Image, Button, View, Text, StatusBar } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
 
-import { ProfileScreen, SearchScreen } from "./pages/Screens";
+import {
+  PostScreen,
+  ProfileScreen,
+  SearchScreen,
+  SettingsScreen,
+} from "./pages/Screens";
 import { StartScreen } from "./pages/StartScreen";
 import { HomeScreen } from "./pages/HomeScreen";
+import DrawerScreen from "./pages/DrawerScreen";
 
 function NotificationsScreen({ navigation }) {
   return (
@@ -28,6 +34,10 @@ export default function App() {
           options={{ headerShown: false }}
         />
         <Drawer.Screen name="Notifications" component={NotificationsScreen} />
+        <Drawer.Screen name="Profile" component={ProfileScreen} />
+        <Drawer.Screen name="New Post" component={PostScreen} />
+        <Drawer.Screen name="Settings" component={SettingsScreen} />
+        <Drawer.Screen name="Search" component={SearchScreen} />
       </Drawer.Navigator>
     </NavigationContainer>
   );

@@ -1,7 +1,14 @@
 import { AppLoading } from "expo";
 import React, { useState, useEffect } from "react";
 import * as Font from "expo-font";
-import { Text, StatusBar, View, ScrollView, StyleSheet } from "react-native";
+import {
+  Text,
+  StatusBar,
+  View,
+  ScrollView,
+  StyleSheet,
+  Button,
+} from "react-native";
 import BlogCard from "../components/BlogCard";
 import OldBlogCard from "../components/OldBlogCard";
 import GreetingSection from "../components/Greeting";
@@ -34,7 +41,7 @@ function HomeScreen({ navigation }) {
       style={styles.statusbarFix}
       showsVerticalScrollIndicator={false}
     >
-      <GreetingSection />
+      <GreetingSection navigation={navigation} />
       <HeaderTitle title="For You" />
       <ScrollView
         horizontal={true}

@@ -3,12 +3,9 @@ import { Text, Image, View } from "react-native";
 import SearchBars from "../components/components.SearchBar";
 function SearchScreen() {
   return (
-    <>
-      <SearchBars />
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <Text>Search Screen</Text>
-      </View>
-    </>
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Text>Search Screen</Text>
+    </View>
   );
 }
 

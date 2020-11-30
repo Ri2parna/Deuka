@@ -1,24 +1,20 @@
-import React from "react";
-import { SearchBar } from "react-native-elements";
+import React, { Component } from "react";
+import { TextInput } from "react-native";
 
-export default class SearchBars extends React.Component {
-  state = {
-    search: "",
-  };
+const SearchBars = () => {
+  const [value, changeText] = React.useState();
 
-  updateSearch = (search) => {
-    this.setState({ search });
-  };
+  return (
+    <TextInput
+      style={{
+        padding: 4,
+        borderRadius: 2,
+      }}
+      onChangeText={(text) => changeText(text)}
+      placeholder="Start Searching"
+      value={value}
+    />
+  );
+};
 
-  render() {
-    const { search } = this.state;
-    return (
-      <SearchBar
-        lightTheme
-        placeholder="Type Here..."
-        onChangeText={this.updateSearch}
-        value={search}
-      />
-    );
-  }
-}
+export default SearchBars;

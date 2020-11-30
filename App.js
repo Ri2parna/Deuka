@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Image, Button, View, Text, StatusBar } from "react-native";
+import { Text, Button, View } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
 
@@ -9,7 +9,9 @@ import {
   SearchScreen,
   SettingsScreen,
 } from "./pages/Screens";
+
 import { StartScreen } from "./pages/StartScreen";
+import SearchBars from "./components/components.SearchBar";
 import { HomeScreen } from "./pages/HomeScreen";
 import DrawerScreen from "./pages/DrawerScreen";
 
@@ -24,7 +26,6 @@ function NotificationsScreen({ navigation }) {
 const Drawer = createDrawerNavigator();
 
 export default function App() {
-  var loggedIn = true;
   return (
     <NavigationContainer>
       <Drawer.Navigator initialRouteName="Home">
@@ -37,7 +38,13 @@ export default function App() {
         <Drawer.Screen name="Profile" component={ProfileScreen} />
         <Drawer.Screen name="New Post" component={PostScreen} />
         <Drawer.Screen name="Settings" component={SettingsScreen} />
-        <Drawer.Screen name="Search" component={SearchScreen} />
+        <Drawer.Screen
+          name="Search"
+          component={SearchScreen}
+          options={{
+            headerTitle: () => <SearchBars />,
+          }}
+        />
       </Drawer.Navigator>
     </NavigationContainer>
   );

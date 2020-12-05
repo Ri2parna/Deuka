@@ -7,7 +7,13 @@ import {
   TouchableNativeFeedback,
   TouchableOpacity,
 } from "react-native-gesture-handler";
+
+import useTime from "./useTime";
+
 const GreetingSection = ({ navigation }) => {
+
+  const greeting = useTime();
+
   const [fontsLoaded, setFontLoadState] = useState(false);
   async function loadFont() {
     await Font.loadAsync({
@@ -26,7 +32,7 @@ const GreetingSection = ({ navigation }) => {
       <>
         <View style={styles.greetingContainer}>
           <View>
-            <Text style={styles.greetingFont}>Good Morning,</Text>
+            <Text style={styles.greetingFont}>{greeting}</Text>
             <Text
               style={{
                 fontFamily: "Publico-Regular",

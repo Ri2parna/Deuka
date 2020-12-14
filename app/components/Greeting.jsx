@@ -8,16 +8,15 @@ import {
   TouchableOpacity,
 } from "react-native-gesture-handler";
 
-import useTime from "./useTime";
+import useTime from "../hooks/useTime";
 
 const GreetingSection = ({ navigation }) => {
-
   const greeting = useTime();
 
   const [fontsLoaded, setFontLoadState] = useState(false);
   async function loadFont() {
     await Font.loadAsync({
-      "Publico-Regular": require("../assets/fonts/Publico-Regular.ttf"),
+      "Publico-Regular": require("../assets/fonts/Publico.ttf"),
     });
     return true;
   }

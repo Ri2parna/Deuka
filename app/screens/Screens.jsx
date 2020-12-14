@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, Image, View } from "react-native";
-import SearchBars from "../components/components.SearchBar";
+import SearchBars from "../components/searchbar";
 function SearchScreen() {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>

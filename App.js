@@ -21,7 +21,7 @@ export default function App() {
       <Drawer.Navigator initialRouteName="Home">
         {/* <Drawer.Screen name="Home" component={StartScreen} /> */}
         <Drawer.Screen
-          name="homePage"
+          name="Homepage"
           component={HomeScreen}
           options={{ headerShown: false }}
         />

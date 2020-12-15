@@ -4,11 +4,11 @@ import Colors from "../../config/colors";
 import CardContainer from "./cardcontainer";
 import CardImage from "./cardimage";
 import CardText from "./cardtext";
-const Card = () => {
+const Card = ({ item }) => {
   return (
     <CardContainer>
-      <CardText />
-      <CardImage />
+      <CardText title={item.title} userId={item.userId} />
+      <CardImage postId={item.id} />
     </CardContainer>
   );
 };

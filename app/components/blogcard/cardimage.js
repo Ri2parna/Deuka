@@ -1,11 +1,11 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 
-export default function CardImage() {
+export default function CardImage({ postId }) {
   return (
     <Image
       style={styles.image}
-      source={{ uri: "https://i.pravatar.cc/200?img=57" }}
+      source={{ uri: "https://i.pravatar.cc/200?img=" + postId }}
     />
   );
 }

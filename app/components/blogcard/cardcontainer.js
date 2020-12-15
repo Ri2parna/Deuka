@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     display: "flex",
     elevation: 4,
     flexDirection: "row",
+    justifyContent: "space-between",
     padding: 12,
     width: Dimensions.get("window").width * 0.94,
   },

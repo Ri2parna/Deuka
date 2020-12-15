@@ -5,22 +5,38 @@ import {
   Text,
   StatusBar,
   View,
-  ScrollView,
   StyleSheet,
-  Button,
+  ActivityIndicator,
 } from "react-native";
 import Card from "../components/blogcard";
 import GreetingSection from "../components/Greeting";
+import Colors from "../config/colors";
+import { FlatList } from "react-native-gesture-handler";
 
 function HomeScreen({ navigation }) {
+  const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/posts")
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => console.error(error))
+      .finally(() => setLoading(false));
+  }, []);
   return (
     <>
       <View style={styles.statusbarFix}></View>
       <GreetingSection navigation={navigation} />
       <View style={{ display: "flex", alignItems: "center" }}>
-        <Card />
-        <Card />
-        <Card />
+        {isLoading ? (
+          <ActivityIndicator />
+        ) : (
+          <FlatList
+            data={data}
+            keyExtractor={({ id }) => id.toString()}
+            renderItem={Card}
+          />
+        )}
       </View>
     </>
   );
@@ -28,12 +44,13 @@ function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   statusbarFix: {
     paddingTop: StatusBar.currentHeight,
-    backgroundColor: "#edf6f9",
+    backgroundColor: Colors.primary.blue,
   },
 });
 
 module.exports = { HomeScreen };
 
+// Redundant or might be used Later
 function HeaderTitle({ title }) {
   const [fontsLoaded, setFontLoadState] = useState(false);
   async function loadFont() {

@@ -17,7 +17,7 @@ class CardContainer extends React.Component {
 }
 const styles = StyleSheet.create({
   CardContainer: {
-    backgroundColor: Colors.secondary.red,
+    backgroundColor: Colors.success,
     borderRadius: 16,
     display: "flex",
     elevation: 4,

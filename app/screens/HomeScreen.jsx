@@ -13,7 +13,7 @@ import GreetingSection from "../components/Greeting";
 import Colors from "../config/colors";
 import { FlatList } from "react-native-gesture-handler";
 
-function HomeScreen({ navigation }) {
+export default function HomeScreen({ navigation }) {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   useEffect(() => {

@@ -2,11 +2,7 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
 import * as Font from "expo-font";
 import { AppLoading } from "expo";
-import {
-  TouchableHighlight,
-  TouchableNativeFeedback,
-  TouchableOpacity,
-} from "react-native-gesture-handler";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 import useTime from "../hooks/useTime";
 

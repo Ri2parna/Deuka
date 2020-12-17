@@ -23,11 +23,16 @@ export default function HomeScreen({ navigation }) {
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
   }, []);
+  useEffect(() =>
+    navigation.addListener("beforeRemove", (e) => {
+      e.preventDefault();
+    })
+  );
   return (
     <>
-      <View style={styles.statusbarFix}></View>
       <GreetingSection navigation={navigation} />
       <View style={{ display: "flex", alignItems: "center" }}>
+        <HeaderTitletonight title={"For You"} />
         {isLoading ? (
           <ActivityIndicator />
         ) : (
@@ -37,6 +42,7 @@ export default function HomeScreen({ navigation }) {
             renderItem={Card}
           />
         )}
+        <HeaderTitletonight title={"Popular Reads"} />
       </View>
     </>
   );
@@ -50,8 +56,7 @@ const styles = StyleSheet.create({
 
 module.exports = { HomeScreen };
 
-// Redundant or might be used Later
-function HeaderTitle({ title }) {
+function HeaderTitletonight({ title }) {
   const [fontsLoaded, setFontLoadState] = useState(false);
   async function loadFont() {
     await Font.loadAsync({

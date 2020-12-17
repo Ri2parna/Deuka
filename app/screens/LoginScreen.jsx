@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Image, StyleSheet } from "react-native";
+import { Button, Image, StyleSheet } from "react-native";
 import * as Yup from "yup";
 
 import Screen from "../components/Screen";
@@ -11,10 +11,10 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required().min(6).label("Password"),
 });
 
-function LoginScreen(props) {
+function LoginScreen({ navigation, ...props }) {
   const reactContext = useContext(ReactContext);
   const handleSubmit = () => {
-    reactContext.setIsLog("Good");
+    reactContext.setIsLog(true);
   };
   return (
     <Screen style={styles.container}>
@@ -42,6 +42,13 @@ function LoginScreen(props) {
           secureTextEntry
         />
         <SubmitButton title="Login" />
+        <Button
+          title={"Go to AppNav"}
+          onPress={() => {
+            handleSubmit();
+            navigation.navigate("AppNav");
+          }}
+        />
       </AppForm>
     </Screen>
   );

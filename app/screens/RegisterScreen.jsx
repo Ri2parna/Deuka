@@ -18,7 +18,7 @@ function RegisterScreen(props) {
 
       <AppForm
         initialValues={{ name: "", email: "", password: "" }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values) => null}
         validationSchema={validationSchema}
       >
         <AppFormField

@@ -41,7 +41,7 @@ const GreetingSection = ({ navigation }) => {
           <TouchableOpacity>
             <Image
               style={styles.AvatarImage}
-              source={{ uri: "https://i.pravatar.cc/200?u=rituparna" }}
+              source={{ uri: "https://i.pravatar.cc/200?u=henry" }}
             />
           </TouchableOpacity>
         </View>

@@ -4,7 +4,6 @@ import Colors from "../config/colors";
 
 function NotificationsScreen({ navigation }) {
   const [notifications, UpdateNotifications] = useState([]);
-  console.log(notifications);
   return (
     <View
       style={{

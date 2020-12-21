@@ -1,17 +1,12 @@
 import { AppLoading } from "expo";
 import React, { useState, useEffect } from "react";
 import * as Font from "expo-font";
-import {
-  Text,
-  StatusBar,
-  View,
-  StyleSheet,
-  ActivityIndicator,
-} from "react-native";
+import { Text, StatusBar, View, StyleSheet } from "react-native";
 import Card from "../components/blogcard";
 import GreetingSection from "../components/Greeting";
 import Colors from "../config/colors";
-import { FlatList } from "react-native-gesture-handler";
+import { FlatList, ScrollView } from "react-native-gesture-handler";
+import { Divider } from "react-native-elements";
 
 export default function HomeScreen({ navigation }) {
   const [isLoading, setLoading] = useState(true);
@@ -29,22 +24,33 @@ export default function HomeScreen({ navigation }) {
     })
   );
   return (
-    <>
+    <ScrollView>
       <GreetingSection navigation={navigation} />
       <View style={{ display: "flex", alignItems: "center" }}>
         <HeaderTitletonight title={"For You"} />
-        {isLoading ? (
-          <ActivityIndicator />
-        ) : (
-          <FlatList
-            data={data}
-            keyExtractor={({ id }) => id.toString()}
-            renderItem={Card}
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+          <Card
+            style={{ backgroundColor: Colors.green }}
+            item={{ title: "Test Title", userId: 1 }}
           />
-        )}
+          <Card item={{ title: "Test Title", userId: 2 }} />
+          <Card item={{ title: "Test Title", userId: 3 }} />
+          <Card item={{ title: "Test Title", userId: 4 }} />
+        </ScrollView>
         <HeaderTitletonight title={"Popular Reads"} />
+        <Card item={{ title: "Test Title", userId: 1 }} />
+        <Tdiv />
+        <Card item={{ title: "Test Title", userId: 2 }} />
+        <Tdiv />
+        <Card item={{ title: "Test Title", userId: 3 }} />
+        <Tdiv />
+        <Card item={{ title: "Test Title", userId: 4 }} />
+        <Tdiv />
+        <Card item={{ title: "Test Title", userId: 4 }} />
+        <Tdiv />
+        <Card item={{ title: "Test Title", userId: 4 }} />
       </View>
-    </>
+    </ScrollView>
   );
 }
 const styles = StyleSheet.create({
@@ -77,4 +83,8 @@ function HeaderTitletonight({ title }) {
       </View>
     );
   }
+}
+
+function Tdiv() {
+  return <Divider style={{ backgroundColor: Colors.primary, width: "88%" }} />;
 }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Image, Text, StyleSheet, View } from "react-native";
+import Colors from "../../config/colors";
 export default function CardText({ title, userId }) {
   const [Loading, setLoading] = useState(true);
   const [User, setUser] = useState({});
@@ -15,7 +16,7 @@ export default function CardText({ title, userId }) {
       style={{
         display: "flex",
         flexShrink: -1,
-        opacity: 1,
+        justifyContent: "center",
       }}
     >
       <Text style={{ fontWeight: "bold" }}>{title}</Text>

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Button, Image, StyleSheet } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Yup from "yup";
 
 import Screen from "../components/Screen";
@@ -11,10 +12,20 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required().min(6).label("Password"),
 });
 
+const storeData = async (value) => {
+  try {
+    console.log("Saving user logged in status");
+    await AsyncStorage.setItem("isUserLoggedIn", String(value));
+  } catch (e) {
+    console.error(e);
+  }
+};
+
 function LoginScreen({ navigation, ...props }) {
   const reactContext = useContext(ReactContext);
   const handleSubmit = () => {
     reactContext.setIsLog(true);
+    storeData("yes");
   };
   return (
     <Screen style={styles.container}>

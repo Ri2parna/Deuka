@@ -1,12 +1,17 @@
 import React from "react";
-import { StyleSheet, Image } from "react-native";
+import { StyleSheet, Image, View } from "react-native";
+import ShimmerPlaceholder from "react-native-shimmer-placeholder";
 
 export default function CardImage({ postId }) {
   return (
-    <Image
-      style={styles.image}
-      source={{ uri: "https://i.pravatar.cc/200?img=" + postId }}
-    />
+    <View style={styles.image}>
+      <ShimmerPlaceholder style={styles.image}>
+        <Image
+          style={styles.image}
+          source={{ uri: "https://i.pravatar.cc/200?img=" + postId }}
+        />
+      </ShimmerPlaceholder>
+    </View>
   );
 }
 const styles = StyleSheet.create({

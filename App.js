@@ -12,6 +12,7 @@ const getData = async () => {
     if (value !== null) {
       if (value == "yes") return true;
     }
+    return false;
   } catch (e) {
     console.error(e);
   }

@@ -7,6 +7,7 @@ import GreetingSection from "../components/Greeting";
 import Colors from "../config/colors";
 import { FlatList, ScrollView } from "react-native-gesture-handler";
 import { Divider } from "react-native-elements";
+import ShimmerPlaceholder from "react-native-shimmer-placeholder";
 
 export default function HomeScreen({ navigation }) {
   const [isLoading, setLoading] = useState(true);
@@ -18,6 +19,7 @@ export default function HomeScreen({ navigation }) {
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
   }, []);
+  // prevents moving back to the login screen after succesful login
   useEffect(() =>
     navigation.addListener("beforeRemove", (e) => {
       e.preventDefault();

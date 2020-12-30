@@ -1,5 +1,7 @@
 import React from "react";
 import { Text, Image, View } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
+import { Colors } from "react-native/Libraries/NewAppScreen";
 import SearchBars from "../components/searchbar";
 function SearchScreen() {
   return (
@@ -20,13 +22,7 @@ function ProfileScreen() {
     </View>
   );
 }
-function PostScreen() {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Post Screen</Text>
-    </View>
-  );
-}
+
 function SettingsScreen() {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
@@ -45,7 +41,6 @@ function NewPostScreen() {
 module.exports = {
   ProfileScreen,
   SearchScreen,
-  PostScreen,
   SettingsScreen,
   NewPostScreen,
 };

@@ -22,13 +22,13 @@ export default function CardText({ title, userId }) {
     >
       <ShimmerPlaceholder
         style={{ width: "100%", marginBottom: 2 }}
-        visible={Loading}
+        visible={!Loading}
       >
         <Text style={{ fontWeight: "bold" }}>{title}</Text>
       </ShimmerPlaceholder>
       <ShimmerPlaceholder
         style={{ width: "100%", marginBottom: 2 }}
-        visible={Loading}
+        visible={!Loading}
       >
         <Text>This is a pretty subtitle</Text>
       </ShimmerPlaceholder>
@@ -44,7 +44,7 @@ export default function CardText({ title, userId }) {
             width={30}
             height={30}
             style={{ borderRadius: 50 }}
-            visible={Loading}
+            visible={!Loading}
           >
             <Image
               style={{ height: 30, width: 30, borderRadius: 50 }}
@@ -55,7 +55,7 @@ export default function CardText({ title, userId }) {
           </ShimmerPlaceholder>
         </View>
 
-        <ShimmerPlaceholder visible={Loading}>
+        <ShimmerPlaceholder visible={!Loading}>
           <Text style={{ paddingHorizontal: 4 }}>{User.name}</Text>
         </ShimmerPlaceholder>
       </View>

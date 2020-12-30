@@ -40,17 +40,17 @@ export default function HomeScreen({ navigation }) {
           <Card item={{ title: "Test Title", userId: 4 }} />
         </ScrollView>
         <HeaderTitletonight title={"Popular Reads"} />
-        <Card item={{ title: "Test Title", userId: 1 }} />
+        <Card item={{ title: "Test Title", userId: 1, id: 21 }} />
         <Tdiv />
-        <Card item={{ title: "Test Title", userId: 2 }} />
+        <Card item={{ title: "Test Title", userId: 2, id: 32 }} />
         <Tdiv />
-        <Card item={{ title: "Test Title", userId: 3 }} />
+        <Card item={{ title: "Test Title", userId: 3, id: 22 }} />
         <Tdiv />
-        <Card item={{ title: "Test Title", userId: 4 }} />
+        <Card item={{ title: "Test Title", userId: 4, id: 33 }} />
         <Tdiv />
-        <Card item={{ title: "Test Title", userId: 4 }} />
+        <Card item={{ title: "Test Title", userId: 5, id: 66 }} />
         <Tdiv />
-        <Card item={{ title: "Test Title", userId: 4 }} />
+        <Card item={{ title: "Test Title", userId: 6, id: 9 }} />
       </View>
     </ScrollView>
   );

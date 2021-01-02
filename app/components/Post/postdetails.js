@@ -2,18 +2,13 @@ import React from "react";
 import { View, Text, Image, StyleSheet, Dimensions } from "react-native";
 import { Divider } from "react-native-elements";
 import ShimmerPlaceholder from "react-native-shimmer-placeholder";
+import { Colors } from "../../config/colors";
 
 export default function PostDetails() {
   return (
     <View>
       <Title />
-      <Divider
-        style={{
-          width: Dimensions.get("window").width * 0.6,
-          height: 4,
-          backgroundColor: "red",
-        }}
-      />
+      <Divider style={styles.divider} />
       <View style={styles.avatar}>
         <Avatar />
         <AvatarName />
@@ -32,6 +27,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     paddingVertical: 8,
+  },
+  divider: {
+    width: Dimensions.get("window").width * 0.6,
+    height: 4,
+    backgroundColor: "red",
+    marginVertical: 2,
   },
 });
 
@@ -59,7 +60,7 @@ const AvatarName = () => {
 const Title = () => {
   return (
     <ShimmerPlaceholder visible={true}>
-      <Text style={{ fontSize: 24, fontWeight: "bold" }}>
+      <Text style={{ fontSize: 25, fontWeight: "bold" }}>
         Introducing an efficient Big O analyzer
       </Text>
     </ShimmerPlaceholder>

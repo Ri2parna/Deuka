@@ -1,11 +1,20 @@
 import React, { useContext } from "react";
-import { Button, Image, StyleSheet } from "react-native";
+import {
+  Button,
+  View,
+  Image,
+  StyleSheet,
+  Text,
+  Dimensions,
+} from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Yup from "yup";
 
 import Screen from "../components/Screen";
 import { AppForm, AppFormField, SubmitButton } from "../components/forms";
 import ReactContext from "../hooks/useReactContext";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import Colors from "../config/colors";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -29,52 +38,93 @@ function LoginScreen({ navigation, ...props }) {
   };
   return (
     <Screen style={styles.container}>
-      <Image style={styles.icon} source={require("../assets/rhino.png")} />
-
-      <AppForm
-        initialValues={{ email: "", password: "" }}
-        onSubmit={handleSubmit}
-        validationSchema={validationSchema}
+      <View
+        style={{
+          flex: 1,
+          display: "flex",
+          alignContent: "center",
+          justifyContent: "center",
+        }}
       >
-        <AppFormField
-          icon="email"
-          placeholder="User Email"
-          autoCapitalize="none"
-          name="email"
-          autoCorrect={false}
-          keyboardType="email-address"
-        />
-        <AppFormField
-          icon="lock"
-          name="password"
-          placeholder="password"
-          autoCapitalize="none"
-          autoCorrect={false}
-          secureTextEntry
-        />
-        <SubmitButton title="Login" />
-        <Button
-          title={"Go to AppNav"}
-          onPress={() => {
-            handleSubmit();
-            navigation.navigate("AppNav");
+        <Text style={{ fontSize: 36, fontWeight: "bold" }}>Welcome Back!</Text>
+        <Text
+          style={{
+            fontSize: 16,
+            fontWeight: "bold",
+            color: Colors["grey-6"],
+            alignSelf: "center",
           }}
-        />
-      </AppForm>
+        >
+          Sign In to Continue
+        </Text>
+      </View>
+      <View
+        style={{
+          flex: 1,
+          width: Dimensions.get("window").width,
+          padding: 16,
+        }}
+      >
+        <AppForm
+          initialValues={{ email: "", password: "" }}
+          onSubmit={handleSubmit}
+          validationSchema={validationSchema}
+        >
+          <AppFormField
+            icon="email"
+            placeholder="Email"
+            autoCapitalize="none"
+            name="email"
+            autoCorrect={false}
+            keyboardType="email-address"
+          />
+          <AppFormField
+            icon="lock"
+            name="password"
+            placeholder="Password"
+            autoCapitalize="none"
+            autoCorrect={false}
+            secureTextEntry
+          />
+          <SubmitButton title="Login" />
+          <Button
+            title={"Go to AppNav"}
+            onPress={() => {
+              handleSubmit();
+              navigation.navigate("AppNav");
+            }}
+          />
+          <View
+            style={{
+              flex: 1,
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "center",
+              margin: 4,
+              top: 4,
+            }}
+          >
+            <Text style={{ padding: 4 }}>Don't have an account ? -</Text>
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Register");
+              }}
+            >
+              <Text style={{ color: Colors.primary, padding: 4 }}>SignUp</Text>
+            </TouchableOpacity>
+          </View>
+        </AppForm>
+      </View>
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: 5,
-  },
-  icon: {
-    width: 300,
-    height: 150,
-    alignSelf: "center",
-    marginTop: 50,
-    marginBottom: 20,
+    padding: 4,
+    display: "flex",
+    alignItems: "center",
+    flex: 1,
   },
 });
 

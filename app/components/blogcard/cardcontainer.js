@@ -3,6 +3,7 @@ import { Dimensions, StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 import Colors from "../../config/colors";
+
 class CardContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -17,7 +18,7 @@ class CardContainer extends React.Component {
 }
 const styles = StyleSheet.create({
   CardContainer: {
-    backgroundColor: Colors.secondary,
+    backgroundColor: Colors.white,
     borderRadius: 16,
     display: "flex",
     flexDirection: "row",

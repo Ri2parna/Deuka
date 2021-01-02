@@ -14,11 +14,8 @@ export default class PostCard extends React.Component {
 const styles = StyleSheet.create({
   PostCardContainer: {
     alignItems: "flex-start",
-    borderColor: "red",
-    borderRadius: 8,
-    borderWidth: 2,
     display: "flex",
-    padding: 8,
-    marginHorizontal: 8,
+    padding: 4,
+    marginHorizontal: 6,
   },
 });

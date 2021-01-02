@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
 import * as Font from "expo-font";
 import { AppLoading } from "expo";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 import useTime from "../hooks/useTime";
+import Colors from "../config/colors";
 
 const GreetingSection = ({ navigation }) => {
-  const greeting = useTime();
-
+  // write a function for passing username or send username as props to this component
+  const greeting = useTime(); // loads the salutation as text
+  // Load Font
   const [fontsLoaded, setFontLoadState] = useState(false);
   async function loadFont() {
     await Font.loadAsync({
@@ -16,6 +17,7 @@ const GreetingSection = ({ navigation }) => {
     });
     return true;
   }
+
   useEffect(() => {
     loadFont().then(setFontLoadState);
   }, []);
@@ -24,48 +26,43 @@ const GreetingSection = ({ navigation }) => {
     return <AppLoading />;
   } else {
     return (
-      <>
-        <View style={styles.greetingContainer}>
-          <View>
-            <Text style={styles.greetingFont}>{greeting}</Text>
-            <Text
-              style={{
-                fontFamily: "Publico-Regular",
-                fontWeight: "bold",
-                fontSize: 30,
-              }}
-            >
-              Rituparna Das
-            </Text>
-          </View>
-          <TouchableOpacity>
-            <Image
-              style={styles.AvatarImage}
-              source={{ uri: "https://i.pravatar.cc/200?u=henry" }}
-            />
-          </TouchableOpacity>
+      <View style={styles.greetingContainer}>
+        <View>
+          <Text style={styles.greetingFont}>{greeting}</Text>
+          <Text style={styles.title}>Rituparna Das</Text>
         </View>
-      </>
+        <Image
+          style={styles.AvatarImage}
+          source={require("../assets/Avatar.png")}
+        />
+      </View>
     );
   }
 };
 
 const styles = StyleSheet.create({
   greetingContainer: {
+    alignItems: "center",
     display: "flex",
     flexDirection: "row",
-    alignItems: "center",
-    paddingHorizontal: 16,
     justifyContent: "space-between",
+    paddingHorizontal: 16,
     paddingTop: 16,
   },
   greetingFont: {
     fontFamily: "Publico-Regular",
+    color: Colors.secondary,
   },
   AvatarImage: {
+    borderRadius: 50,
     height: 60,
     width: 60,
-    borderRadius: 50,
+  },
+  title: {
+    fontFamily: "Publico-Regular",
+    fontSize: 30,
+    fontWeight: "bold",
+    color: Colors.secondary,
   },
 });
 export default GreetingSection;

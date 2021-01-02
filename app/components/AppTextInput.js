@@ -14,7 +14,7 @@ function AppTextInput({ icon, placeholder, ...otherProps }) {
         />
       )}
       <TextInput
-        placeholderTextColor={Colors["grey-4"]}
+        placeholderTextColor={Colors["grey-6"]}
         style={styles.textInput}
         {...otherProps}
         placeholder={placeholder}
@@ -26,7 +26,7 @@ function AppTextInput({ icon, placeholder, ...otherProps }) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.white,
-    borderRadius: 25,
+    borderRadius: 12,
     flexDirection: "row",
     width: "100%",
     padding: 15,

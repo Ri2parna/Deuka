@@ -9,7 +9,17 @@ import { FlatList, ScrollView } from "react-native-gesture-handler";
 import { Divider } from "react-native-elements";
 import ShimmerPlaceholder from "react-native-shimmer-placeholder";
 
-export default function HomeScreen({ navigation }) {
+const HomeScreen = ({ navigation }) => {
+  const [fontsLoaded, setFontLoadState] = useState(false);
+  async function loadFont() {
+    await Font.loadAsync({
+      "Publico-Regular": require("../assets/fonts/Publico.ttf"),
+    });
+    return true;
+  }
+  useEffect(() => {
+    loadFont().then(setFontLoadState);
+  }, []);
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -25,37 +35,38 @@ export default function HomeScreen({ navigation }) {
       e.preventDefault();
     })
   );
+  if (!fontsLoaded) return <AppLoading />;
   return (
     <ScrollView>
       <GreetingSection navigation={navigation} />
       <View style={{ display: "flex", alignItems: "center" }}>
-        <HeaderTitletonight title={"For You"} />
+        <Text style={styles.headline}>For You</Text>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          <Card
-            style={{ backgroundColor: Colors.green }}
-            item={{ title: "Test Title", userId: 1 }}
-          />
           <Card item={{ title: "Test Title", userId: 2 }} />
           <Card item={{ title: "Test Title", userId: 3 }} />
           <Card item={{ title: "Test Title", userId: 4 }} />
         </ScrollView>
-        <HeaderTitletonight title={"Popular Reads"} />
+        <Text style={styles.headline}>Popular Reads</Text>
         <Card item={{ title: "Test Title", userId: 1, id: 21 }} />
-        <Tdiv />
         <Card item={{ title: "Test Title", userId: 2, id: 32 }} />
-        <Tdiv />
         <Card item={{ title: "Test Title", userId: 3, id: 22 }} />
-        <Tdiv />
         <Card item={{ title: "Test Title", userId: 4, id: 33 }} />
-        <Tdiv />
         <Card item={{ title: "Test Title", userId: 5, id: 66 }} />
-        <Tdiv />
         <Card item={{ title: "Test Title", userId: 6, id: 9 }} />
       </View>
     </ScrollView>
   );
-}
+};
 const styles = StyleSheet.create({
+  headline: {
+    alignSelf: "flex-start",
+    paddingHorizontal: 16,
+    marginTop: 16,
+    marginBottom: 8,
+    fontFamily: "Publico-Regular",
+    fontSize: 21,
+    color: Colors.primary,
+  },
   statusbarFix: {
     paddingTop: StatusBar.currentHeight,
     backgroundColor: Colors.primary.blue,
@@ -63,30 +74,3 @@ const styles = StyleSheet.create({
 });
 
 module.exports = { HomeScreen };
-
-function HeaderTitletonight({ title }) {
-  const [fontsLoaded, setFontLoadState] = useState(false);
-  async function loadFont() {
-    await Font.loadAsync({
-      "Publico-Regular": require("../assets/fonts/Publico.ttf"),
-    });
-    return true;
-  }
-  useEffect(() => {
-    loadFont().then(setFontLoadState);
-  }, []);
-  if (!fontsLoaded) return <AppLoading />;
-  else {
-    return (
-      <View style={{ paddingHorizontal: 16, marginTop: 16, marginBottom: 8 }}>
-        <Text style={{ fontFamily: "Publico-Regular", fontSize: 21 }}>
-          {title}
-        </Text>
-      </View>
-    );
-  }
-}
-
-function Tdiv() {
-  return <Divider style={{ backgroundColor: Colors.primary, width: "88%" }} />;
-}

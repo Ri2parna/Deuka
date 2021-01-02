@@ -6,14 +6,10 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 
 import SearchBars from "../components/searchbar";
 import Colors from "../config/colors";
-import { HomeScreen } from "./HomeScreen";
 import NotificationsScreen from "./notificationScreen";
-import {
-  PostScreen,
-  ProfileScreen,
-  SearchScreen,
-  SettingsScreen,
-} from "./Screens";
+import { HomeScreen } from "./HomeScreen";
+import PostScreen from "./PostScreen";
+import { ProfileScreen, SearchScreen, SettingsScreen } from "./Screens";
 
 const Drawer = createDrawerNavigator();
 
@@ -40,7 +36,7 @@ export default function AppNav() {
         name="Home"
         component={HomeScreen}
         options={{
-          title: "Deuka 🕊",
+          title: "Readable 🕊",
           headerRight: () => {
             return (
               <View

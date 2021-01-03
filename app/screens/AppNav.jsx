@@ -4,12 +4,12 @@ import { EvilIcons, Ionicons } from "@expo/vector-icons";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-import SearchBars from "../components/searchbar";
 import Colors from "../config/colors";
 import NotificationsScreen from "./notificationScreen";
 import { HomeScreen } from "./HomeScreen";
 import PostScreen from "./PostScreen";
-import { ProfileScreen, SearchScreen, SettingsScreen } from "./Screens";
+import ProfileScreen from "./ProfileScreen";
+import { SearchScreen, SettingsScreen } from "./Screens";
 import ListingEditScreen from "./ListingEditScreen";
 const Drawer = createDrawerNavigator();
 
@@ -64,7 +64,7 @@ export default function AppNav() {
       <Drawer.Screen
         name="Search"
         component={SearchScreen}
-        options={{ headerTitle: () => <SearchBars /> }}
+        options={{ headerTitleAlign: "center" }}
       />
     </Drawer.Navigator>
   );

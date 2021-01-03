@@ -1,12 +1,10 @@
 import React from "react";
 import { Text, Image, View } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
-import { Colors } from "react-native/Libraries/NewAppScreen";
-import SearchBars from "../components/searchbar";
+import SearchBar from "react-native-dynamic-search-bar";
 function SearchScreen() {
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Search Screen</Text>
+    <View style={{ height: "100%" }}>
+      <SearchBar style={{ marginTop: "8%" }} autoFocus />
     </View>
   );
 }

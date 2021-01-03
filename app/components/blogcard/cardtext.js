@@ -11,7 +11,7 @@ export default function CardText({ title, userId }) {
       .then((json) => setUser(json))
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
-  }, []);
+  });
   return (
     <View
       style={{
@@ -24,30 +24,31 @@ export default function CardText({ title, userId }) {
         style={{ width: "100%", marginBottom: 2 }}
         visible={!Loading}
       >
-        <Text style={{ fontWeight: "bold" }}>{title}</Text>
+        <Text style={{ fontWeight: "bold", fontSize: 18 }}>{title}</Text>
       </ShimmerPlaceholder>
       <ShimmerPlaceholder
         style={{ width: "100%", marginBottom: 2 }}
         visible={!Loading}
       >
-        <Text>This is a pretty subtitle</Text>
+        <Text style={{ fontSize: 16, color: Colors["grey-5"] }}>
+          This is a pretty subtitle
+        </Text>
       </ShimmerPlaceholder>
       <View
         style={{
           display: "flex",
           flexDirection: "row",
-          alignItems: "center",
         }}
       >
-        <View style={{ height: 30, width: 30, borderRadius: 50 }}>
+        <View style={{ height: 28, width: 28, borderRadius: 10 }}>
           <ShimmerPlaceholder
-            width={30}
-            height={30}
-            style={{ borderRadius: 50 }}
+            width={28}
+            height={28}
+            style={{ borderRadius: 8 }}
             visible={!Loading}
           >
             <Image
-              style={{ height: 30, width: 30, borderRadius: 50 }}
+              style={{ height: 24, width: 24, borderRadius: 10 }}
               source={{
                 uri: "https://i.pravatar.cc/200" + "?u=" + User.username,
               }}

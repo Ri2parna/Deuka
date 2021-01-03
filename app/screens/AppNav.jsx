@@ -10,7 +10,7 @@ import NotificationsScreen from "./notificationScreen";
 import { HomeScreen } from "./HomeScreen";
 import PostScreen from "./PostScreen";
 import { ProfileScreen, SearchScreen, SettingsScreen } from "./Screens";
-
+import ListingEditScreen from "./ListingEditScreen";
 const Drawer = createDrawerNavigator();
 
 const NotificationIcon = () => {
@@ -59,7 +59,7 @@ export default function AppNav() {
       />
       <Drawer.Screen name="Notifications" component={NotificationsScreen} />
       <Drawer.Screen name="Profile" component={ProfileScreen} />
-      <Drawer.Screen name="New Post" component={PostScreen} />
+      <Drawer.Screen name="New Post" component={ListingEditScreen} />
       <Drawer.Screen name="Settings" component={SettingsScreen} />
       <Drawer.Screen
         name="Search"

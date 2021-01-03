@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     padding: 12,
     width: Dimensions.get("window").width * 0.94,
+    marginBottom: 2,
   },
 });
 

@@ -21,5 +21,6 @@ const Colors = {
   "grey-6": "#6B778C",
   "grey-7": "#5E6C84",
   "grey-8": "#505F79",
+  lightGray: "#D3D3D3",
 };
 export default Colors;

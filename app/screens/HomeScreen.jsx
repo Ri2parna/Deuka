@@ -5,7 +5,11 @@ import { Text, StatusBar, View, StyleSheet } from "react-native";
 import Card from "../components/blogcard";
 import GreetingSection from "../components/Greeting";
 import Colors from "../config/colors";
-import { FlatList, ScrollView } from "react-native-gesture-handler";
+import {
+  FlatList,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native-gesture-handler";
 import { Divider } from "react-native-elements";
 import ShimmerPlaceholder from "react-native-shimmer-placeholder";
 
@@ -42,12 +46,17 @@ const HomeScreen = ({ navigation }) => {
       <View style={{ display: "flex", alignItems: "center" }}>
         <Text style={styles.headline}>For You</Text>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+          <TouchableOpacity onPress={() => navigation.navigate("PostContent")}>
+            <Card item={{ title: "Clickable Title", userId: 21, id: 71 }} />
+          </TouchableOpacity>
           <Card item={{ title: "Test Title", userId: 2 }} />
           <Card item={{ title: "Test Title", userId: 3 }} />
           <Card item={{ title: "Test Title", userId: 4 }} />
         </ScrollView>
         <Text style={styles.headline}>Popular Reads</Text>
-        <Card item={{ title: "Test Title", userId: 1, id: 21 }} />
+        <TouchableOpacity onPress={() => navigation.navigate("PostContent")}>
+          <Card item={{ title: "Clickable Post", userId: 1, id: 4 }} />
+        </TouchableOpacity>
         <Card item={{ title: "Test Title", userId: 2, id: 32 }} />
         <Card item={{ title: "Test Title", userId: 3, id: 22 }} />
         <Card item={{ title: "Test Title", userId: 4, id: 33 }} />

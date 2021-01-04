@@ -18,7 +18,6 @@ export default function PostScreen({ postId }) {
   return (
     <ScrollView
       style={{
-        paddingTop: StatusBar.currentHeight,
         backgroundColor: Colors.white,
       }}
     >

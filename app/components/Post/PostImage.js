@@ -8,7 +8,7 @@ export default function PostImage() {
       <ShimmerPlaceholder style={styles.image} visible={true}>
         <Image
           style={styles.image}
-          source={{ uri: "https://i.pravatar.cc/600?" }}
+          source={{ uri: "https://i.pravatar.cc/400" }}
         />
       </ShimmerPlaceholder>
     </View>
@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
   image: {
     height: Dimensions.get("window").height * 0.4,
     width: Dimensions.get("window").width,
-    borderRadius: 8,
+    borderBottomLeftRadius: 8,
+    borderBottomRightRadius: 8,
   },
 });

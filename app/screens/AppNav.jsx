@@ -70,6 +70,11 @@ export default function AppNav() {
       <Drawer.Screen name="New Post" component={ListingEditScreen} />
       {/* <Drawer.Screen name="Settings" component={SettingsScreen} /> */}
       <Drawer.Screen
+        name="PostContent"
+        component={PostScreen}
+        options={{ headerTitleAlign: "center" }}
+      />
+      <Drawer.Screen
         name="Search"
         component={SearchScreen}
         options={{ headerTitleAlign: "center" }}

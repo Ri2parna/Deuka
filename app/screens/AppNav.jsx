@@ -13,17 +13,25 @@ import { SearchScreen, SettingsScreen } from "./Screens";
 import ListingEditScreen from "./ListingEditScreen";
 const Drawer = createDrawerNavigator();
 
-const NotificationIcon = () => {
+const NotificationIcon = ({ navigation, route }) => {
   return (
-    <TouchableOpacity style={{ paddingRight: 20 }}>
+    <TouchableOpacity
+      style={{ paddingRight: 20 }}
+      onPress={() => navigation.navigate("Notifications")}
+    >
       <Ionicons name="ios-notifications-outline" size={32} color="black" />
     </TouchableOpacity>
   );
 };
 
-const SearchIcon = () => {
+const SearchIcon = ({ navigation, route }) => {
   return (
-    <TouchableOpacity style={{ paddingRight: 20 }}>
+    <TouchableOpacity
+      onPress={() => {
+        navigation.navigate("Search");
+      }}
+      style={{ paddingRight: 20 }}
+    >
       <EvilIcons name="search" size={32} color="black" />
     </TouchableOpacity>
   );
@@ -35,7 +43,7 @@ export default function AppNav() {
       <Drawer.Screen
         name="Home"
         component={HomeScreen}
-        options={{
+        options={({ navigation, route }) => ({
           title: "Readable 🕊",
           headerRight: () => {
             return (
@@ -46,8 +54,8 @@ export default function AppNav() {
                   alignItems: "center",
                 }}
               >
-                <NotificationIcon />
-                <SearchIcon />
+                <NotificationIcon navigation={navigation} route={route} />
+                <SearchIcon navigation={navigation} route={route} />
               </View>
             );
           },
@@ -55,12 +63,12 @@ export default function AppNav() {
             elevation: 0,
             backgroundColor: Colors.white,
           },
-        }}
+        })}
       />
       <Drawer.Screen name="Notifications" component={NotificationsScreen} />
       <Drawer.Screen name="Profile" component={ProfileScreen} />
       <Drawer.Screen name="New Post" component={ListingEditScreen} />
-      <Drawer.Screen name="Settings" component={SettingsScreen} />
+      {/* <Drawer.Screen name="Settings" component={SettingsScreen} /> */}
       <Drawer.Screen
         name="Search"
         component={SearchScreen}

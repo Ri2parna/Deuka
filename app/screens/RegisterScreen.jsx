@@ -24,13 +24,13 @@ function RegisterScreen(props) {
           justifyContent: "center",
         }}
       >
-        <Text style={{ fontSize: 36, fontWeight: "bold" }}>Welcome Back!</Text>
+        <Text style={{ fontSize: 36, fontWeight: "bold" }}>Welcome!</Text>
         <Text
           style={{
             fontSize: 16,
             fontWeight: "bold",
             color: Colors["grey-6"],
-            width: Dimensions.get("window").width * 0.6,
+            textAlign: "center",
           }}
         >
           Please provide your details for your new account
@@ -77,6 +77,7 @@ function RegisterScreen(props) {
               color: Colors["grey-7"],
               padding: 4,
               fontSize: 12,
+              textAlign: "center",
             }}
           >
             By creating your account you agree with to our Terms and Conditions

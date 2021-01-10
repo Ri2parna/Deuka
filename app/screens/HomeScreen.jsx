@@ -47,7 +47,7 @@ const HomeScreen = ({ navigation }) => {
         <Text style={styles.headline}>For You</Text>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           <TouchableOpacity onPress={() => navigation.navigate("PostContent")}>
-            <Card item={{ title: "Clickable Title", userId: 21, id: 71 }} />
+            <Card item={{ title: "Clickable Title", userId: 2, id: 22 }} />
           </TouchableOpacity>
           <Card item={{ title: "Test Title", userId: 2 }} />
           <Card item={{ title: "Test Title", userId: 3 }} />

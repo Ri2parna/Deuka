@@ -8,7 +8,7 @@ export default function PostImage() {
       <ShimmerPlaceholder style={styles.image} visible={true}>
         <Image
           style={styles.image}
-          source={{ uri: "https://i.pravatar.cc/400" }}
+          source={{ uri: "https://picsum.photos/600/?blur=2" }}
         />
       </ShimmerPlaceholder>
     </View>

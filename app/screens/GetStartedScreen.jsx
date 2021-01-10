@@ -29,8 +29,8 @@ const GetStartedScreen = ({ navigation }) => {
     return (
       <View
         style={{
-          height: Dimensions.get("screen").height,
-          width: Dimensions.get("window").width,
+          height: Dimensions.get("window").height + StatusBar.currentHeight,
+          width: Dimensions.get("screen").width,
           backgroundColor: Colors.primary,
           display: "flex",
           alignItems: "center",

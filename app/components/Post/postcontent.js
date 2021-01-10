@@ -2,7 +2,7 @@ import React from "react";
 import { Text, StyleSheet } from "react-native";
 export default function PostContent() {
   return (
-    <Text style={{ fontSize: 18 }}>
+    <Text style={{ fontSize: 16 }}>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus quisquam
       rerum eaque consectetur reprehenderit, ipsum, assumenda hic, sunt
       praesentium minus rem ducimus perspiciatis repellendus quia corporis harum

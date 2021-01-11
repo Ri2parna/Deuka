@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View } from "react-native";
+import { View, Dimensions } from "react-native";
 import { EvilIcons, Ionicons } from "@expo/vector-icons";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -11,6 +11,7 @@ import PostScreen from "./PostScreen";
 import ProfileScreen from "./ProfileScreen";
 import { SearchScreen, SettingsScreen } from "./Screens";
 import ListingEditScreen from "./ListingEditScreen";
+import DrawerScreen from "./DrawerScreen";
 const Drawer = createDrawerNavigator();
 
 const NotificationIcon = ({ navigation, route }) => {
@@ -39,7 +40,11 @@ const SearchIcon = ({ navigation, route }) => {
 
 export default function AppNav() {
   return (
-    <Drawer.Navigator initialRouteName="Home">
+    <Drawer.Navigator
+      initialRouteName="Home"
+      drawerContent={DrawerScreen}
+      drawerType={Dimensions.get("window").width >= 768 ? "permanent" : "front"}
+    >
       <Drawer.Screen
         name="Home"
         component={HomeScreen}

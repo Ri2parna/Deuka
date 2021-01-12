@@ -36,9 +36,10 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   textInput: {
+    flex: 1,
     fontSize: 18,
     fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
-    color: Colors.primary,
+    color: Colors.secondary,
   },
 });
 

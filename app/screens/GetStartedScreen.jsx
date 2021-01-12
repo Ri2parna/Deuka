@@ -1,16 +1,11 @@
 import { AppLoading } from "expo";
 import * as Font from "expo-font";
 import React, { useEffect, useState } from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  Dimensions,
-  StatusBar,
-  Image,
-} from "react-native";
+import { StyleSheet, View, Text, Dimensions, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+
 import Colors from "../config/colors";
+import Screen from "../components/Screen";
 
 const GetStartedScreen = ({ navigation }) => {
   const [fontsLoaded, setFontLoadState] = useState(false);
@@ -27,16 +22,7 @@ const GetStartedScreen = ({ navigation }) => {
     return <AppLoading />;
   } else {
     return (
-      <View
-        style={{
-          height: Dimensions.get("window").height + StatusBar.currentHeight,
-          width: Dimensions.get("screen").width,
-          backgroundColor: Colors.primary,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
+      <Screen style={{ backgroundColor: Colors.primary }}>
         <View style={styles.block_1}>
           <Text
             style={{
@@ -71,15 +57,15 @@ const GetStartedScreen = ({ navigation }) => {
             display: "flex",
             alignItems: "flex-end",
             justifyContent: "flex-end",
-            padding: 32,
+            padding: "8%",
           }}
         >
           <TouchableOpacity
             style={{
               borderWidth: 2,
               borderColor: Colors.white,
-              padding: 4,
-              paddingHorizontal: 8,
+              padding: "2%",
+              paddingHorizontal: "4%",
               borderRadius: 50,
             }}
             onPress={() => navigation.navigate("Welcome")}
@@ -87,7 +73,7 @@ const GetStartedScreen = ({ navigation }) => {
             <Text style={{ color: Colors.white }}>Get Started</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </Screen>
     );
   }
 };

@@ -1,20 +1,15 @@
 import React, { useContext } from "react";
-import {
-  Button,
-  View,
-  Image,
-  StyleSheet,
-  Text,
-  Dimensions,
-} from "react-native";
+import { View, StyleSheet, Text, Dimensions } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Yup from "yup";
 
 import Screen from "../components/Screen";
 import { AppForm, AppFormField, SubmitButton } from "../components/forms";
 import ReactContext from "../hooks/useReactContext";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import Colors from "../config/colors";
+import BigText from "../components/BigText";
+import SubtitleText from "../components/SubtitleText";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -30,41 +25,19 @@ const storeData = async (value) => {
   }
 };
 
-function LoginScreen({ navigation, ...props }) {
+export default function LoginScreen({ navigation, ...props }) {
   const reactContext = useContext(ReactContext);
   const handleSubmit = () => {
     reactContext.setIsLog(true);
     storeData("yes");
   };
   return (
-    <Screen style={styles.container}>
-      <View
-        style={{
-          flex: 1,
-          display: "flex",
-          alignContent: "center",
-          justifyContent: "center",
-        }}
-      >
-        <Text style={{ fontSize: 36, fontWeight: "bold" }}>Welcome Back!</Text>
-        <Text
-          style={{
-            fontSize: 16,
-            fontWeight: "bold",
-            color: Colors["grey-6"],
-            alignSelf: "center",
-          }}
-        >
-          Sign In to Continue
-        </Text>
+    <Screen>
+      <View style={[styles.centerItems, { flex: 1 }]}>
+        <BigText text="Welcome Back!" />
+        <SubtitleText text="Sign In to Continue" />
       </View>
-      <View
-        style={{
-          flex: 1,
-          width: Dimensions.get("window").width,
-          padding: 16,
-        }}
-      >
+      <View style={styles.formContainer}>
         <AppForm
           initialValues={{ email: "", password: "" }}
           onSubmit={handleSubmit}
@@ -87,13 +60,6 @@ function LoginScreen({ navigation, ...props }) {
             secureTextEntry
           />
           <SubmitButton title="Login" />
-          <Button
-            title={"Go to AppNav"}
-            onPress={() => {
-              handleSubmit();
-              navigation.navigate("AppNav");
-            }}
-          />
           <View
             style={{
               flex: 1,
@@ -126,6 +92,29 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flex: 1,
   },
+  centerItems: {
+    display: "flex",
+    alignContent: "center",
+    justifyContent: "center",
+  },
+  formContainer: {
+    flex: 1,
+    padding: 16,
+    width: Dimensions.get("window").width,
+  },
 });
 
-export default LoginScreen;
+function SignInCatchphrase() {
+  return (
+    <Text
+      style={{
+        fontSize: 16,
+        fontWeight: "bold",
+        color: Colors["grey-6"],
+        alignSelf: "center",
+      }}
+    >
+      Sign In to Continue
+    </Text>
+  );
+}

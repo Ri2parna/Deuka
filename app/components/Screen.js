@@ -1,5 +1,4 @@
 import React from "react";
-import { Dimensions } from "react-native";
 import {
   SafeAreaView,
   StyleSheet,
@@ -18,7 +17,11 @@ function Screen({ children, style }) {
 
 const styles = StyleSheet.create({
   screen: {
+    alignItems: "center",
+    height: "100%",
+    justifyContent: "center",
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
+    width: "100%",
   },
 });
 

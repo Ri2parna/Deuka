@@ -20,6 +20,7 @@ export default function PostScreen({ postId }) {
       style={{
         backgroundColor: Colors.white,
       }}
+      showsVerticalScrollIndicator={false}
     >
       <PostImage />
       <PostCard>

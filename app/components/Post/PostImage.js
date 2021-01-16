@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   image: {
     height: Dimensions.get("window").height * 0.4,
     width: Dimensions.get("window").width,
-    borderBottomLeftRadius: 8,
-    borderBottomRightRadius: 8,
+    borderBottomLeftRadius: 24,
+    borderBottomRightRadius: 24,
   },
 });

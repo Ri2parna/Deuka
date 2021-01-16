@@ -15,7 +15,9 @@ const styles = StyleSheet.create({
   PostCardContainer: {
     alignItems: "flex-start",
     display: "flex",
-    padding: 4,
+    padding: "4%",
     marginHorizontal: 6,
+    borderRadius: 24,
+    backgroundColor: "rgba(211, 211, 211, .9)",
   },
 });

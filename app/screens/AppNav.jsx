@@ -12,9 +12,10 @@ import ProfileScreen from "./ProfileScreen";
 import { SearchScreen, SettingsScreen } from "./Screens";
 import ListingEditScreen from "./ListingEditScreen";
 import DrawerScreen from "./DrawerScreen";
+import { Text } from "react-native";
 const Drawer = createDrawerNavigator();
 
-const NotificationIcon = ({ navigation, route }) => {
+const NotificationIcon = ({ navigation }) => {
   return (
     <TouchableOpacity
       style={{ paddingRight: 20 }}
@@ -25,7 +26,7 @@ const NotificationIcon = ({ navigation, route }) => {
   );
 };
 
-const SearchIcon = ({ navigation, route }) => {
+const SearchIcon = ({ navigation }) => {
   return (
     <TouchableOpacity
       onPress={() => {
@@ -35,6 +36,21 @@ const SearchIcon = ({ navigation, route }) => {
     >
       <EvilIcons name="search" size={32} color="black" />
     </TouchableOpacity>
+  );
+};
+
+const headerRightItems = (navigation) => {
+  return (
+    <View
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+      }}
+    >
+      <NotificationIcon navigation={navigation} />
+      <SearchIcon navigation={navigation} />
+    </View>
   );
 };
 
@@ -48,22 +64,9 @@ export default function AppNav() {
       <Drawer.Screen
         name="Home"
         component={HomeScreen}
-        options={({ navigation, route }) => ({
-          title: "Readable 🕊",
-          headerRight: () => {
-            return (
-              <View
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                }}
-              >
-                <NotificationIcon navigation={navigation} route={route} />
-                <SearchIcon navigation={navigation} route={route} />
-              </View>
-            );
-          },
+        options={({ navigation }) => ({
+          headerTitle: "Deuka 🕊",
+          headerRight: () => headerRightItems(navigation),
           headerStyle: {
             elevation: 0,
             backgroundColor: Colors.white,

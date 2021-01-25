@@ -1,6 +1,5 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import { Colors } from "react-native/Libraries/NewAppScreen";
 
 export default class PostCard extends React.Component {
   constructor(props) {
@@ -18,6 +17,7 @@ const styles = StyleSheet.create({
     padding: "4%",
     marginHorizontal: 6,
     borderRadius: 24,
-    backgroundColor: "rgba(211, 211, 211, .9)",
+    backgroundColor: "rgba(211, 211, 211, 1)",
+    top: -20,
   },
 });

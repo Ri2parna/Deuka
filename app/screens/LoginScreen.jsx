@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { View, StyleSheet, Text, Dimensions } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -18,7 +18,7 @@ const validationSchema = Yup.object().shape({
 
 const storeData = async (value) => {
   try {
-    console.log("Saving user logged in status");
+    console.log("Success: Logging in User");
     await AsyncStorage.setItem("isUserLoggedIn", String(value));
   } catch (e) {
     console.error(e);
@@ -27,9 +27,32 @@ const storeData = async (value) => {
 
 export default function LoginScreen({ navigation, ...props }) {
   const reactContext = useContext(ReactContext);
-  const handleSubmit = () => {
-    reactContext.setIsLog(true);
-    storeData("yes");
+  const handleSubmit = ({ email, password }) => {
+    try {
+      fetch("https://authify-backend.herokuapp.com/v1/login", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data?.error) {
+            alert("Login Error");
+          } else {
+            storeData(data.user);
+            navigation.navigate("AppNav");
+          }
+        })
+        .catch((err) => console.log(err));
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <Screen>

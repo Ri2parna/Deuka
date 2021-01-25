@@ -46,12 +46,10 @@ const HomeScreen = ({ navigation }) => {
       <View style={{ display: "flex", alignItems: "center" }}>
         <Text style={styles.headline}>For You</Text>
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          <TouchableOpacity onPress={() => navigation.navigate("PostContent")}>
-            <Card item={{ title: "Clickable Title", userId: 2, id: 22 }} />
-          </TouchableOpacity>
-          <Card item={{ title: "Test Title", userId: 2 }} />
-          <Card item={{ title: "Test Title", userId: 3 }} />
-          <Card item={{ title: "Test Title", userId: 4 }} />
+          <Card item={{ title: "Clickable Title", userId: 2, id: 22 }} mr={8} />
+          <Card item={{ title: "Test Title", userId: 2 }} mr={8} />
+          <Card item={{ title: "Test Title", userId: 3 }} mr={8} />
+          <Card item={{ title: "Test Title", userId: 4 }} mr={8} />
         </ScrollView>
         <Text style={styles.headline}>Popular Reads</Text>
         <TouchableOpacity onPress={() => navigation.navigate("PostContent")}>

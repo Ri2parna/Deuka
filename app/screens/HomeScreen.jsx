@@ -5,13 +5,7 @@ import { Text, StatusBar, View, StyleSheet } from "react-native";
 import Card from "../components/blogcard";
 import GreetingSection from "../components/Greeting";
 import Colors from "../config/colors";
-import {
-  FlatList,
-  ScrollView,
-  TouchableOpacity,
-} from "react-native-gesture-handler";
-import { Divider } from "react-native-elements";
-import ShimmerPlaceholder from "react-native-shimmer-placeholder";
+import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 
 const HomeScreen = ({ navigation }) => {
   const [fontsLoaded, setFontLoadState] = useState(false);
@@ -26,6 +20,7 @@ const HomeScreen = ({ navigation }) => {
   }, []);
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
+
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/posts")
       .then((response) => response.json())
@@ -33,13 +28,16 @@ const HomeScreen = ({ navigation }) => {
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
   }, []);
+
   // prevents moving back to the login screen after succesful login
   useEffect(() =>
     navigation.addListener("beforeRemove", (e) => {
       e.preventDefault();
     })
   );
+
   if (!fontsLoaded) return <AppLoading />;
+
   return (
     <ScrollView>
       <GreetingSection navigation={navigation} />

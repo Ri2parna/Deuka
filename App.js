@@ -8,6 +8,7 @@ import ReactContext from "./app/hooks/useReactContext";
 
 const getData = async () => {
   try {
+    console.log("Fetching data from storage");
     const value = await AsyncStorage.getItem("isUserLoggedIn");
     if (value !== null) {
       if (value == "yes") return true;

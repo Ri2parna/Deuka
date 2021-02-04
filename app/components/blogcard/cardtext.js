@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Image, Text, StyleSheet, View } from "react-native";
-import ShimmerPlaceholder from "react-native-shimmer-placeholder";
+import { LinearGradient } from "expo-linear-gradient";
+import { createShimmerPlaceholder } from "react-native-shimmer-placeholder";
+
+const ShimmerPlaceholder = createShimmerPlaceholder(LinearGradient);
+
 import Colors from "../../config/colors";
 export default function CardText({ title, userId }) {
   const [Loading, setLoading] = useState(true);

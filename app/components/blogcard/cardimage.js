@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, Image, View } from "react-native";
-import ShimmerPlaceholder from "react-native-shimmer-placeholder";
+import { LinearGradient } from "expo-linear-gradient";
+import { createShimmerPlaceholder } from "react-native-shimmer-placeholder";
+
+const ShimmerPlaceholder = createShimmerPlaceholder(LinearGradient);
 
 export default function CardImage({ postId }) {
   const [ImageLoading, setImageLoading] = useState(true);

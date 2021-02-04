@@ -1,8 +1,11 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, Dimensions } from "react-native";
 import { Divider } from "react-native-elements";
-import ShimmerPlaceholder from "react-native-shimmer-placeholder";
+import { LinearGradient } from "expo-linear-gradient";
+import { createShimmerPlaceholder } from "react-native-shimmer-placeholder";
 import { Colors } from "../../config/colors";
+
+const ShimmerPlaceholder = createShimmerPlaceholder(LinearGradient);
 
 export default function PostDetails() {
   return (

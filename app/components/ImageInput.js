@@ -13,7 +13,7 @@ import Colors from "../config/colors";
 
 function ImageInput({ imageUri, onChangeImage }) {
   const requestPermission = async () => {
-    const result = await ImagePicker.requestCameraRollPermissionsAsync();
+    const result = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (!result.granted) {
       alert("You need to enable permission to access images");
     }

@@ -19,7 +19,7 @@ const getData = async () => {
 };
 
 export default function App() {
-  const [isLog, setIsLog] = useState(false);
+  const [isLog, setIsLog] = useState(getData);
   return (
     <ReactContext.Provider value={{ isLog, setIsLog }}>
       <NavigationContainer>

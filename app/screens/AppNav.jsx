@@ -10,8 +10,7 @@ import ProfileScreen from "./ProfileScreen";
 import { SearchScreen, SettingsScreen } from "./Screens";
 import ListingEditScreen from "./ListingEditScreen";
 import DrawerScreen from "./DrawerScreen";
-import { NotificationIcon } from "../components/NotificationIcon";
-import { SearchIcon } from "./../components/SearchIcon";
+import { SearchIcon, NotificationIcon } from "../components/Icons";
 
 const Drawer = createDrawerNavigator();
 
@@ -23,24 +22,24 @@ const headerRightItems = (navigation) => {
     </View>
   );
 };
-
+//
 export default function AppNav() {
   return (
     <Drawer.Navigator
       initialRouteName="Home"
       drawerContent={DrawerScreen}
-      drawerType={Dimensions.get("window").width >= 768 ? "permanent" : "front"}
+      drawerType={Dimensions.get("window").width >= 768 ? "permanent" : "slide"}
       screenOptions={{
         headerStyle: styles.headerStyle,
         headerTitleAlign: "center",
       }}
+      drawerStyle={{ width: "18%", padding: 4, borderRadius: 8 }}
     >
       <Drawer.Screen
         name="Home"
         component={HomeScreen}
         options={({ navigation }) => ({
           headerTitle: "Deuka 🕊",
-          headerRight: () => headerRightItems(navigation),
           headerTitleAlign: "left",
         })}
       />

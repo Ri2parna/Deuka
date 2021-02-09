@@ -93,7 +93,15 @@ export default function LoginScreen({ navigation, ...props }) {
               top: 4,
             }}
           >
-            <Text style={{ padding: 4 }}>Don't have an account ? -</Text>
+            <Text
+              style={{
+                color: Colors["grey-6"],
+                fontWeight: "bold",
+                padding: 4,
+              }}
+            >
+              Don't have an account ? -
+            </Text>
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate("Register");

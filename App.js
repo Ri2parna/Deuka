@@ -10,6 +10,7 @@ const getData = async () => {
   try {
     console.log("Fetching data from storage");
     const value = await AsyncStorage.getItem("isUserLoggedIn");
+    console.log(`Found: ${value}`);
     if (value !== null) {
       if (value == "yes") return true;
     }

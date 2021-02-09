@@ -38,13 +38,7 @@ const GetStartedScreen = ({ navigation }) => {
             where readers and writers come to unite
           </Text>
           <Image
-            style={{
-              height: 500,
-              width: 250,
-              opacity: 0.3,
-              position: "absolute",
-              top: Dimensions.get("window").height * 0.0095,
-            }}
+            style={styles.backgroundImage}
             source={require("../assets/studentBackground.png")}
             resizeMode="contain"
           />
@@ -78,6 +72,7 @@ const GetStartedScreen = ({ navigation }) => {
   }
 };
 export default GetStartedScreen;
+
 const styles = StyleSheet.create({
   block_1: {
     display: "flex",
@@ -85,5 +80,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: Dimensions.get("window").width,
     flexGrow: 1,
+  },
+  backgroundImage: {
+    height: 500,
+    width: 250,
+    opacity: 0.3,
+    position: "absolute",
+    top: Dimensions.get("window").height * 0.0095,
   },
 });

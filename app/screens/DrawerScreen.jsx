@@ -15,7 +15,7 @@ import {
   SearchIcon,
 } from "../components/Icons";
 
-const DrawerScreen = (props) => {
+const DrawerScreen = ({ navigation, ...props }) => {
   removeValue = async () => {
     try {
       await AsyncStorage.removeItem("isUserLoggedIn");
@@ -28,11 +28,27 @@ const DrawerScreen = (props) => {
   return (
     <View style={styles.container__Sidebar}>
       <View style={[styles.innerContainer__sidebar, styles.shadow]}>
-        <DrawerItem label={() => null} icon={NotificationIcon} />
-        <DrawerItem label={() => null} icon={SearchIcon} />
-        <DrawerItem label={() => null} icon={HomeIcon} />
+        <DrawerItem
+          label={() => null}
+          icon={NotificationIcon}
+          onPress={() => navigation.navigate("Notifications")}
+        />
+        <DrawerItem
+          label={() => null}
+          icon={SearchIcon}
+          onPress={() => navigation.navigate("Search")}
+        />
+        <DrawerItem
+          label={() => null}
+          icon={HomeIcon}
+          onPress={() => navigation.navigate("Home")}
+        />
         <DrawerItem label={() => null} icon={SettingsIcon} />
-        <DrawerItem label={() => null} icon={ProfileIcon} />
+        <DrawerItem
+          label={() => null}
+          icon={ProfileIcon}
+          onPress={() => navigation.navigate("Profile")}
+        />
       </View>
     </View>
   );

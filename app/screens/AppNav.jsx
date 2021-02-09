@@ -3,26 +3,17 @@ import { StyleSheet, View, Dimensions } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import Colors from "../config/colors";
+
 import NotificationsScreen from "./notificationScreen";
 import { HomeScreen } from "./HomeScreen";
 import PostScreen from "./PostScreen";
 import ProfileScreen from "./ProfileScreen";
-import { SearchScreen, SettingsScreen } from "./Screens";
+import { SearchScreen } from "./Screens";
 import ListingEditScreen from "./ListingEditScreen";
 import DrawerScreen from "./DrawerScreen";
-import { SearchIcon, NotificationIcon } from "../components/Icons";
 
 const Drawer = createDrawerNavigator();
 
-const headerRightItems = (navigation) => {
-  return (
-    <View style={styles.centerRowItems}>
-      <NotificationIcon navigation={navigation} />
-      <SearchIcon navigation={navigation} />
-    </View>
-  );
-};
-//
 export default function AppNav() {
   return (
     <Drawer.Navigator
@@ -33,7 +24,7 @@ export default function AppNav() {
         headerStyle: styles.headerStyle,
         headerTitleAlign: "center",
       }}
-      drawerStyle={{ width: "18%", padding: 4, borderRadius: 8 }}
+      drawerStyle={styles.drawerStyle}
     >
       <Drawer.Screen
         name="Home"
@@ -52,6 +43,7 @@ export default function AppNav() {
     </Drawer.Navigator>
   );
 }
+
 const styles = StyleSheet.create({
   centerRowItems: {
     display: "flex",
@@ -61,5 +53,10 @@ const styles = StyleSheet.create({
   headerStyle: {
     elevation: 0,
     backgroundColor: Colors.white,
+  },
+  drawerStyle: {
+    width: "18%",
+    padding: 4,
+    borderRadius: 8,
   },
 });

@@ -21,13 +21,11 @@ function WelcomeScreen({ navigation }) {
           paddingLeft: Dimensions.get("window").width * 0.1,
         }}
       >
-        <Text style={{ fontSize: 40, fontWeight: "bold" }}>The</Text>
-        <Text style={{ fontSize: 48, fontWeight: "bold", color: Colors.red }}>
-          Perfect
-        </Text>
-        <Text style={{ fontSize: 40, fontWeight: "bold" }}>place</Text>
-        <Text style={{ fontSize: 40, fontWeight: "bold" }}>for</Text>
-        <Text style={{ fontSize: 40, fontWeight: "bold" }}>reading.</Text>
+        <Text style={styles.TextStyle}>The</Text>
+        <Text style={[styles.TextStyle, { color: Colors.red }]}>Perfect</Text>
+        <Text style={styles.TextStyle}>place</Text>
+        <Text style={styles.TextStyle}>for</Text>
+        <Text style={styles.TextStyle}>reading.</Text>
       </View>
       <Image
         style={{ height: 24, width: 48 }}
@@ -61,6 +59,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 100,
   },
+  TextStyle: { fontSize: 40, fontWeight: "bold" },
 });
 
 export default WelcomeScreen;

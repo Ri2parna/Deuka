@@ -1,27 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import AppNav from "./app/screens/AppNav";
 import AuthNav from "./app/screens/AuthNav";
 import ReactContext from "./app/hooks/useReactContext";
+import AppLoading from "expo-app-loading";
 
 const getData = async () => {
   try {
-    console.log("Fetching data from storage");
     const value = await AsyncStorage.getItem("isUserLoggedIn");
-    console.log(`Found: ${value}`);
     if (value !== null) {
-      if (value == "yes") return true;
+      return true;
+    } else {
+      return false;
     }
-    return false;
   } catch (e) {
     console.error(e);
   }
 };
 
 export default function App() {
-  const [isLog, setIsLog] = useState(getData);
+  const [isLog, setIsLog] = useState(false);
+  const [Loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getData()
+      .then((val) => {
+        setIsLog(val);
+      })
+      .then(() => setLoading(false));
+  }, []);
+  if (Loading) {
+    return <AppLoading />;
+  }
   return (
     <ReactContext.Provider value={{ isLog, setIsLog }}>
       <NavigationContainer>

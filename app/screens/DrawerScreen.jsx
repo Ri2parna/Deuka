@@ -49,6 +49,13 @@ const DrawerScreen = ({ navigation, ...props }) => {
           icon={ProfileIcon}
           onPress={() => navigation.navigate("Profile")}
         />
+        <DrawerItem
+          label={() => null}
+          icon={ProfileIcon}
+          onPress={() => {
+            removeValue();
+          }}
+        />
       </View>
     </View>
   );

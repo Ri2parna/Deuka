@@ -11,6 +11,7 @@ import ProfileScreen from "./ProfileScreen";
 import { SearchScreen } from "./Screens";
 import ListingEditScreen from "./ListingEditScreen";
 import DrawerScreen from "./DrawerScreen";
+import SettingsScreen from "./SettingsScreen";
 
 const Drawer = createDrawerNavigator();
 
@@ -18,13 +19,11 @@ export default function AppNav() {
   return (
     <Drawer.Navigator
       initialRouteName="Home"
-      drawerContent={DrawerScreen}
       drawerType={Dimensions.get("window").width >= 768 ? "permanent" : "slide"}
       screenOptions={{
         headerStyle: styles.headerStyle,
         headerTitleAlign: "center",
       }}
-      drawerStyle={styles.drawerStyle}
     >
       <Drawer.Screen
         name="Home"
@@ -37,8 +36,8 @@ export default function AppNav() {
       <Drawer.Screen name="Notifications" component={NotificationsScreen} />
       <Drawer.Screen name="Profile" component={ProfileScreen} />
       <Drawer.Screen name="New Post" component={ListingEditScreen} />
-      {/* <Drawer.Screen name="Settings" component={SettingsScreen} /> */}
-      <Drawer.Screen name="PostContent" component={PostScreen} options={{}} />
+      <Drawer.Screen name="Settings" component={SettingsScreen} />
+      <Drawer.Screen name="PostContent" component={PostScreen} />
       <Drawer.Screen name="Search" component={SearchScreen} />
     </Drawer.Navigator>
   );

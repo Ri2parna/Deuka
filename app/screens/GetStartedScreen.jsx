@@ -24,16 +24,7 @@ const GetStartedScreen = ({ navigation }) => {
     return (
       <Screen style={{ backgroundColor: Colors.primary }}>
         <View style={styles.block_1}>
-          <Text
-            style={{
-              fontSize: 40,
-              fontFamily: "Publico-Regular",
-              color: Colors.white,
-              opacity: 1,
-            }}
-          >
-            Deuka
-          </Text>
+          <Text style={styles.text__2}>Deuka</Text>
           <Text style={{ fontSize: 16, color: Colors.white }}>
             where readers and writers come to unite
           </Text>
@@ -44,27 +35,12 @@ const GetStartedScreen = ({ navigation }) => {
           />
         </View>
 
-        <View
-          style={{
-            flexGrow: 1,
-            width: Dimensions.get("window").width,
-            display: "flex",
-            alignItems: "flex-end",
-            justifyContent: "flex-end",
-            padding: "8%",
-          }}
-        >
+        <View style={styles.block__2}>
           <TouchableOpacity
-            style={{
-              borderWidth: 2,
-              borderColor: Colors.white,
-              padding: "2%",
-              paddingHorizontal: "4%",
-              borderRadius: 50,
-            }}
+            style={styles.button}
             onPress={() => navigation.navigate("Welcome")}
           >
-            <Text style={{ color: Colors.white }}>Get Started</Text>
+            <Text style={styles.text__1}>Get Started</Text>
           </TouchableOpacity>
         </View>
       </Screen>
@@ -86,6 +62,38 @@ const styles = StyleSheet.create({
     width: 250,
     opacity: 0.3,
     position: "absolute",
-    top: Dimensions.get("window").height * 0.0095,
+    top: Dimensions.get("window").height * 0.0096,
+  },
+  text__1: {
+    color: Colors.primary,
+    fontWeight: "bold",
+    fontSize: 16,
+  },
+  button: {
+    backgroundColor: Colors.white,
+    padding: "2.6%",
+    paddingHorizontal: "14%",
+    borderRadius: 50,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  block__2: {
+    flexGrow: 1,
+    width: Dimensions.get("window").width,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    padding: "8%",
+  },
+  text__2: {
+    fontSize: 40,
+    fontFamily: "Publico-Regular",
+    color: Colors.white,
   },
 });

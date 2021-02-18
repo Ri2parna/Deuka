@@ -1,11 +1,12 @@
-import AppLoading from "expo-app-loading";
-import React, { useState, useEffect } from "react";
 import * as Font from "expo-font";
+import AppLoading from "expo-app-loading";
 import { Text, StatusBar, View, StyleSheet } from "react-native";
+import React, { useState, useEffect } from "react";
+import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
+
 import Card from "../components/blogcard";
 import GreetingSection from "../components/Greeting";
 import Colors from "../config/colors";
-import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 
 const HomeScreen = ({ navigation }) => {
   const [fontsLoaded, setFontLoadState] = useState(false);

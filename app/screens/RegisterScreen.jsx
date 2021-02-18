@@ -1,11 +1,13 @@
 import React from "react";
-import { Image, StyleSheet, View, Text, Dimensions } from "react-native";
+import { Image, StyleSheet, View, Dimensions } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Yup from "yup";
 
 import BigText from "../components/BigText";
 import SubtitleText from "../components/SubtitleText";
 import Screen from "../components/Screen";
 import { AppForm, AppFormField, SubmitButton } from "../components/forms";
+import { SIGNUP_URL } from "../../settings";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().label("Name"),
@@ -13,7 +15,43 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required().min(6).label("Password"),
 });
 
-function RegisterScreen(props) {
+const storeData = async (value) => {
+  try {
+    await AsyncStorage.setItem("isUserLoggedIn", String(value));
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+function RegisterScreen({ navigation, ...props }) {
+  const handleSubmit = ({ name, email, password }) => {
+    try {
+      fetch(SIGNUP_URL, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          password: password,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data?.error || data?.caughtErrors) {
+            alert("Signup Error");
+          } else {
+            storeData(data.user);
+            navigation.navigate("AppNav");
+          }
+        })
+        .catch((err) => console.log(err));
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <Screen style={styles.container}>
       <View style={[styles.centerItems, { flex: 1, padding: 4 }]}>
@@ -23,7 +61,7 @@ function RegisterScreen(props) {
       <View style={styles.formContainer}>
         <AppForm
           initialValues={{ name: "", email: "", password: "" }}
-          onSubmit={(values) => null}
+          onSubmit={handleSubmit}
           validationSchema={validationSchema}
         >
           <AppFormField

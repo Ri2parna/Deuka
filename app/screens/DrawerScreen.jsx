@@ -22,7 +22,7 @@ const DrawerScreen = ({ navigation, ...props }) => {
     } catch (e) {
       console.log("There has been an error"); // error
     }
-    console.log("Done.");
+    prompt("Done.");
   };
 
   return (

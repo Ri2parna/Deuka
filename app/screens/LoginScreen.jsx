@@ -7,6 +7,7 @@ import * as Yup from "yup";
 import Screen from "../components/Screen";
 import { AppForm, AppFormField, SubmitButton } from "../components/forms";
 import ReactContext from "../hooks/useReactContext";
+import { LOGIN_URL } from "../../settings";
 import Colors from "../config/colors";
 import BigText from "../components/BigText";
 import SubtitleText from "../components/SubtitleText";
@@ -18,7 +19,6 @@ const validationSchema = Yup.object().shape({
 
 const storeData = async (value) => {
   try {
-    console.log("Success: Logging in User");
     await AsyncStorage.setItem("isUserLoggedIn", String(value));
   } catch (e) {
     console.error(e);
@@ -29,7 +29,7 @@ export default function LoginScreen({ navigation, ...props }) {
   const reactContext = useContext(ReactContext);
   const handleSubmit = ({ email, password }) => {
     try {
-      fetch("https://authify-backend.herokuapp.com/v1/login", {
+      fetch(LOGIN_URL, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -134,18 +134,3 @@ const styles = StyleSheet.create({
     width: Dimensions.get("window").width,
   },
 });
-
-function SignInCatchphrase() {
-  return (
-    <Text
-      style={{
-        fontSize: 16,
-        fontWeight: "bold",
-        color: Colors["grey-6"],
-        alignSelf: "center",
-      }}
-    >
-      Sign In to Continue
-    </Text>
-  );
-}

@@ -49,22 +49,37 @@ const GetStartedScreen = ({ navigation }) => {
             flexGrow: 1,
             width: Dimensions.get("window").width,
             display: "flex",
-            alignItems: "flex-end",
+            alignItems: "center",
             justifyContent: "flex-end",
             padding: "8%",
           }}
         >
           <TouchableOpacity
             style={{
-              borderWidth: 2,
-              borderColor: Colors.white,
-              padding: "2%",
-              paddingHorizontal: "4%",
+              backgroundColor: Colors.white,
+              padding: "2.6%",
+              paddingHorizontal: "14%",
               borderRadius: 50,
+              shadowColor: "#000",
+              shadowOffset: {
+                width: 0,
+                height: 2,
+              },
+              shadowOpacity: 0.25,
+              shadowRadius: 3.84,
+              elevation: 5,
             }}
             onPress={() => navigation.navigate("Welcome")}
           >
-            <Text style={{ color: Colors.white }}>Get Started</Text>
+            <Text
+              style={{
+                color: Colors.primary,
+                fontWeight: "bold",
+                fontSize: 16,
+              }}
+            >
+              Get Started
+            </Text>
           </TouchableOpacity>
         </View>
       </Screen>
@@ -86,6 +101,6 @@ const styles = StyleSheet.create({
     width: 250,
     opacity: 0.3,
     position: "absolute",
-    top: Dimensions.get("window").height * 0.0095,
+    top: Dimensions.get("window").height * 0.0096,
   },
 });

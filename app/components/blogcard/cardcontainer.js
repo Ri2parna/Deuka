@@ -11,7 +11,7 @@ class CardContainer extends React.Component {
   render(props) {
     return (
       <TouchableOpacity
-        style={[styles.CardContainer, { marginRight: this.props?.mr || 0 }]}
+        style={styles.CardContainer}
       >
         {this.props.children}
       </TouchableOpacity>
@@ -20,14 +20,13 @@ class CardContainer extends React.Component {
 }
 const styles = StyleSheet.create({
   CardContainer: {
-    backgroundColor: Colors.white,
+    backgroundColor: "#F5F5F5",
     borderRadius: 16,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
     marginBottom: 2,
-    padding: 12,
-    width: Dimensions.get("window").width * 0.94,
+    padding: 16
   },
 });
 

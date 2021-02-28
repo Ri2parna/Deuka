@@ -2,7 +2,7 @@ import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
 import { Text, StatusBar, View, StyleSheet } from "react-native";
 import React, { useState, useEffect } from "react";
-import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
+import { FlatList } from "react-native-gesture-handler";
 
 import Card from "../components/blogcard";
 import GreetingSection from "../components/Greeting";
@@ -16,13 +16,11 @@ const HomeScreen = ({ navigation }) => {
     });
     return true;
   }
-  useEffect(() => {
-    loadFont().then(setFontLoadState);
-  }, []);
   const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
+  const [Data, setData] = useState([]);
 
   useEffect(() => {
+    loadFont().then(setFontLoadState);
     fetch("https://jsonplaceholder.typicode.com/posts")
       .then((response) => response.json())
       .then((json) => setData(json))
@@ -40,27 +38,29 @@ const HomeScreen = ({ navigation }) => {
   if (!fontsLoaded) return <AppLoading />;
 
   return (
-    <ScrollView>
-      <GreetingSection navigation={navigation} />
-      <View style={{ display: "flex", alignItems: "center" }}>
-        <Text style={styles.headline}>For You</Text>
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          <Card item={{ title: "Clickable Title", userId: 2, id: 22 }} mr={8} />
-          <Card item={{ title: "Test Title", userId: 2 }} mr={8} />
-          <Card item={{ title: "Test Title", userId: 3 }} mr={8} />
-          <Card item={{ title: "Test Title", userId: 4 }} mr={8} />
-        </ScrollView>
-        <Text style={styles.headline}>Popular Reads</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("PostContent")}>
-          <Card item={{ title: "Clickable Post", userId: 1, id: 4 }} />
-        </TouchableOpacity>
-        <Card item={{ title: "Test Title", userId: 2, id: 32 }} />
-        <Card item={{ title: "Test Title", userId: 3, id: 22 }} />
-        <Card item={{ title: "Test Title", userId: 4, id: 33 }} />
-        <Card item={{ title: "Test Title", userId: 5, id: 66 }} />
-        <Card item={{ title: "Test Title", userId: 6, id: 9 }} />
-      </View>
-    </ScrollView>
+    <>
+      <FlatList
+        style={{ backgroundColor: Colors.white }}
+        data={Data}
+        renderItem={({ item }) => {
+          return (
+            <Card
+              id={item.id}
+              title={item.title}
+              userId={item.userId}
+              subTitle={"a short subtitle"}
+            />
+          );
+        }}
+        keyExtractor={(item) => item.title}
+        ListHeaderComponent={() => (
+          <>
+            <GreetingSection navigation={navigation} />
+            <Text style={styles.headline}>For You</Text>
+          </>
+        )}
+      />
+    </>
   );
 };
 const styles = StyleSheet.create({
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
     fontFamily: "Publico-Regular",
     fontSize: 21,
-    color: Colors.primary,
+    color: Colors.secondary,
   },
   statusbarFix: {
     paddingTop: StatusBar.currentHeight,
@@ -80,3 +80,37 @@ const styles = StyleSheet.create({
 });
 
 module.exports = { HomeScreen };
+
+{
+  /* Test Code to display items
+            <Card
+              title={"A short title"}
+              subTitle={"A short subtitle"}
+              userId={3}
+              mr={8}
+            />
+            <Card
+              title={"A kind of medium title"}
+              subTitle={"A kind of medium subtitle"}
+              userId={2}
+              mr={8}
+            />
+            <Card
+              title={"A long title to check for issues with user experience"}
+              subTitle={
+                "A long subtitle to check for issues with user experience"
+              }
+              userId={9}
+              mr={8}
+            />
+            <Card
+              title={
+                "A super long title as a final test to check for irregular display issues in small screens"
+              }
+              subTitle={
+                "A super long subtitle as a final test to check for irregular display issues in small screens"
+              }
+              userId={6}
+              mr={8}
+            /> */
+}

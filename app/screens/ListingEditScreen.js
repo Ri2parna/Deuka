@@ -36,16 +36,11 @@ function ListingEditScreen() {
   return (
     <Screen style={styles.container}>
       <AppForm
-        initialValues={{
-          title: "",
-          description: "",
-          images: [],
-        }}
-        onSubmit={handleSubmit}
-        validationSchema={validationSchema}
+        initialValues={{ title: "", subtitle: "" }}
+        onSubmit={() => null}
       >
-        <FormImagePicker name="images" />
         <AppFormField maxLength={255} name="title" placeholder="Title" />
+        <AppFormField maxLength={255} name="subTitle" placeholder="Sub-title" />
         <AppFormField
           maxLength={255}
           multiline

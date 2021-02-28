@@ -7,6 +7,7 @@ import useTime from "../hooks/useTime";
 import Colors from "../config/colors";
 
 const GreetingSection = ({ navigation }) => {
+  const [Username, setUsername] = useState("Rituparna");
   // write a function for passing username or send username as props to this component
   const greeting = useTime(); // loads the salutation as text
   // Load Font
@@ -29,7 +30,11 @@ const GreetingSection = ({ navigation }) => {
       <View style={styles.greetingContainer}>
         <View>
           <Text style={styles.greetingFont}>{greeting}</Text>
-          <Text style={styles.title}>Rituparna Das</Text>
+          <Text
+            style={[styles.greetingFont, { color: Colors.primary, padding: 2 }]}
+          >
+            {Username}
+          </Text>
         </View>
         <Image
           style={styles.AvatarImage}
@@ -52,17 +57,12 @@ const styles = StyleSheet.create({
   greetingFont: {
     fontFamily: "Publico-Regular",
     color: Colors.secondary,
+    fontSize: 24,
   },
   AvatarImage: {
     borderRadius: 50,
     height: 60,
     width: 60,
-  },
-  title: {
-    fontFamily: "Publico-Regular",
-    fontSize: 30,
-    fontWeight: "bold",
-    color: Colors.secondary,
   },
 });
 export default GreetingSection;

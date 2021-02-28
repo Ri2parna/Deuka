@@ -1,16 +1,15 @@
 import React from "react";
 import { Text, View, Image, StyleSheet } from "react-native";
 
-import Colors from "../../config/colors";
 import CardContainer from "./cardcontainer";
 import CardImage from "./cardimage";
 import CardText from "./cardtext";
 
-const Card = ({ item, mr }) => {
+const Card = ({ id, mr, title, userId, subTitle, ...props }) => {
   return (
     <CardContainer mr={mr}>
-      <CardText title={item.title} userId={item.userId} />
-      <CardImage postId={item.id} />
+      <CardText title={title} subTitle={subTitle} userId={userId} />
+      <CardImage postId={id} />
     </CardContainer>
   );
 };

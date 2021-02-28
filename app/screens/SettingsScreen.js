@@ -2,6 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import React from "react";
 import { View, Text } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import Screen from "../components/Screen";
 
 export default function SettingsScreen() {
   removeValue = async () => {
@@ -12,20 +13,13 @@ export default function SettingsScreen() {
     }
   };
   return (
-    <View
-      style={{
-        width: "100%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
+    <Screen>
       <TouchableOpacity
         style={{ backgroundColor: "red" }}
         onPress={() => removeValue()}
       >
         <Text>Logout</Text>
       </TouchableOpacity>
-    </View>
+    </Screen>
   );
 }

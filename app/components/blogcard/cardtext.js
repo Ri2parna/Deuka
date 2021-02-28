@@ -6,7 +6,8 @@ import { createShimmerPlaceholder } from "react-native-shimmer-placeholder";
 const ShimmerPlaceholder = createShimmerPlaceholder(LinearGradient);
 
 import Colors from "../../config/colors";
-export default function CardText({ title, userId }) {
+
+export default function CardText({ title, userId, subTitle }) {
   const [Loading, setLoading] = useState(true);
   const [User, setUser] = useState({});
   useEffect(() => {
@@ -20,28 +21,22 @@ export default function CardText({ title, userId }) {
     <View
       style={{
         display: "flex",
-        flexShrink: -1,
         justifyContent: "center",
+        width: "70%",
       }}
     >
       <ShimmerPlaceholder
         style={{ width: "100%", marginBottom: 2 }}
         visible={!Loading}
       >
-        <Text style={{ fontWeight: "bold", fontSize: 18 }}>{title}</Text>
-      </ShimmerPlaceholder>
-      <ShimmerPlaceholder
-        style={{ width: "100%", marginBottom: 2 }}
-        visible={!Loading}
-      >
-        <Text style={{ fontSize: 16, color: Colors["grey-5"] }}>
-          This is a pretty subtitle
-        </Text>
+        <Text style={{ fontWeight: "bold", fontSize: 20 }}>{title}</Text>
       </ShimmerPlaceholder>
       <View
         style={{
           display: "flex",
           flexDirection: "row",
+          alignItems: "center",
+          paddingVertical: 8,
         }}
       >
         <View style={{ height: 28, width: 28, borderRadius: 10 }}>
@@ -61,9 +56,19 @@ export default function CardText({ title, userId }) {
         </View>
 
         <ShimmerPlaceholder visible={!Loading}>
-          <Text style={{ paddingHorizontal: 4 }}>{User.name}</Text>
+          <Text style={{ paddingHorizontal: 4, fontSize: 14 }}>
+            {User.name}
+          </Text>
         </ShimmerPlaceholder>
       </View>
+      <ShimmerPlaceholder
+        style={{ width: "100%", marginBottom: 2 }}
+        visible={!Loading}
+      >
+        <Text style={{ fontSize: 16, color: Colors["grey-7"], lineHeight: 22 }}>
+          {subTitle}
+        </Text>
+      </ShimmerPlaceholder>
     </View>
   );
 }

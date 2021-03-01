@@ -5,6 +5,7 @@ import AppLoading from "expo-app-loading";
 
 import useTime from "../hooks/useTime";
 import Colors from "../config/colors";
+import PublicoText from "./PublicoText";
 
 const GreetingSection = ({ navigation }) => {
   const [Username, setUsername] = useState("Rituparna");

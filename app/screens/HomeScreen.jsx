@@ -4,9 +4,10 @@ import { Text, StatusBar, View, StyleSheet } from "react-native";
 import React, { useState, useEffect } from "react";
 import { FlatList } from "react-native-gesture-handler";
 
-import Card from "../components/blogcard";
+import Card from "../components/Card";
 import GreetingSection from "../components/Greeting";
 import Colors from "../config/colors";
+import PublicoText from "../components/PublicoText";
 
 const HomeScreen = ({ navigation }) => {
   const [fontsLoaded, setFontLoadState] = useState(false);

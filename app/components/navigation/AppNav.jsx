@@ -2,16 +2,15 @@ import * as React from "react";
 import { StyleSheet, View, Dimensions } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
-import Colors from "../config/colors";
+import Colors from "../../config/colors";
 
-import NotificationsScreen from "./notificationScreen";
-import { HomeScreen } from "./HomeScreen";
-import PostScreen from "./PostScreen";
-import ProfileScreen from "./ProfileScreen";
-import { SearchScreen } from "./Screens";
-import ListingEditScreen from "./ListingEditScreen";
-import DrawerScreen from "./DrawerScreen";
-import SettingsScreen from "./SettingsScreen";
+import NotificationsScreen from "../../screens/notificationScreen";
+import { HomeScreen } from "../../screens/HomeScreen";
+import ReadPostScreen from "../../screens/ReadPostScreen";
+import ProfileScreen from "../../screens/ProfileScreen";
+import { SearchScreen } from "../../screens/Screens";
+import CreatePostScreen from "../../screens/CreatePostScreen";
+import SettingsScreen from "../../screens/SettingsScreen";
 
 const Drawer = createDrawerNavigator();
 
@@ -35,9 +34,9 @@ export default function AppNav() {
       />
       <Drawer.Screen name="Notifications" component={NotificationsScreen} />
       <Drawer.Screen name="Profile" component={ProfileScreen} />
-      <Drawer.Screen name="New Post" component={ListingEditScreen} />
+      <Drawer.Screen name="New Post" component={CreatePostScreen} />
       <Drawer.Screen name="Settings" component={SettingsScreen} />
-      <Drawer.Screen name="PostContent" component={PostScreen} />
+      <Drawer.Screen name="PostContent" component={ReadPostScreen} />
       <Drawer.Screen name="Search" component={SearchScreen} />
     </Drawer.Navigator>
   );

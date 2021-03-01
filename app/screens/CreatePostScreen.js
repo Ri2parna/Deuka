@@ -20,7 +20,7 @@ const validationSchema = Yup.object().shape({
   images: Yup.array().min(1, "Please select atlease one image."),
 });
 
-function ListingEditScreen() {
+export default function CreatePostScreen() {
   // const location = useLocation();
 
   const handleSubmit = async (listing) => {
@@ -62,4 +62,3 @@ const styles = StyleSheet.create({
     paddingBottom: StatusBar.currentHeight,
   },
 });
-export default ListingEditScreen;

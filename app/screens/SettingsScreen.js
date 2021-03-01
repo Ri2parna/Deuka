@@ -1,10 +1,9 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import React from "react";
-import { View, Text } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import AppButton from "../components/AppButton";
 import Screen from "../components/Screen";
 
-export default function SettingsScreen() {
+export default function SettingsScreen({ navigation }) {
   removeValue = async () => {
     try {
       await AsyncStorage.removeItem("isUserLoggedIn");
@@ -14,12 +13,7 @@ export default function SettingsScreen() {
   };
   return (
     <Screen>
-      <TouchableOpacity
-        style={{ backgroundColor: "red" }}
-        onPress={() => removeValue()}
-      >
-        <Text>Logout</Text>
-      </TouchableOpacity>
+      <AppButton title="SignOut" onPress={() => removeValue()} />
     </Screen>
   );
 }

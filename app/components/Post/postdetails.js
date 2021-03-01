@@ -4,13 +4,16 @@ import { Divider } from "react-native-elements";
 import { LinearGradient } from "expo-linear-gradient";
 import { createShimmerPlaceholder } from "react-native-shimmer-placeholder";
 import { Colors } from "../../config/colors";
+import PublicoText from "../PublicoText";
 
 const ShimmerPlaceholder = createShimmerPlaceholder(LinearGradient);
 
 export default function PostDetails() {
   return (
     <View>
-      <Title />
+      <PublicoText size={40}>
+        A medium title for displaying on a screen
+      </PublicoText>
       <Divider style={styles.divider} />
       <View style={styles.avatar}>
         <Avatar />

@@ -14,7 +14,7 @@ import PostImage from "../components/Post/PostImage";
 import { Divider } from "react-native-elements";
 import Colors from "../config/colors";
 
-export default function PostScreen({ postId }) {
+export default function ReadPostScreen({ postId }) {
   return (
     <ScrollView
       style={{

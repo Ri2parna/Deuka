@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import AppNav from "./app/screens/AppNav";
-import AuthNav from "./app/screens/AuthNav";
+import AppNav from "./app/components/navigation/AppNav";
+import AuthNav from "./app/components/navigation/AuthNav";
 import ReactContext from "./app/hooks/useReactContext";
 import AppLoading from "expo-app-loading";
 

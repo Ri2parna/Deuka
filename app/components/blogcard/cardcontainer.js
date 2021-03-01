@@ -12,6 +12,7 @@ class CardContainer extends React.Component {
     return (
       <TouchableOpacity
         style={styles.CardContainer}
+        onPress={this.props.onPress}
       >
         {this.props.children}
       </TouchableOpacity>
@@ -26,7 +27,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginBottom: 2,
-    padding: 16
+    padding: 16,
   },
 });
 

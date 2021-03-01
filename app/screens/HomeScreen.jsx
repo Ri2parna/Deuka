@@ -35,7 +35,7 @@ const HomeScreen = ({ navigation }) => {
     })
   );
 
-  if (!fontsLoaded) return <AppLoading />;
+  if (!fontsLoaded || isLoading) return <AppLoading />;
 
   return (
     <>
@@ -49,16 +49,23 @@ const HomeScreen = ({ navigation }) => {
               title={item.title}
               userId={item.userId}
               subTitle={"a short subtitle"}
+              onPress={() => {
+                navigation.navigate("PostContent", item);
+              }}
             />
           );
         }}
         keyExtractor={(item) => item.title}
+        ListEmptyComponent={() => {
+          return <Text>Nothing to Display for now</Text>;
+        }}
         ListHeaderComponent={() => (
           <>
             <GreetingSection navigation={navigation} />
             <Text style={styles.headline}>For You</Text>
           </>
         )}
+        extraData={navigation}
       />
     </>
   );

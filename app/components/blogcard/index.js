@@ -5,9 +5,9 @@ import CardContainer from "./cardcontainer";
 import CardImage from "./cardimage";
 import CardText from "./cardtext";
 
-const Card = ({ id, mr, title, userId, subTitle, ...props }) => {
+const Card = ({ id, mr, title, userId, subTitle, onPress }) => {
   return (
-    <CardContainer mr={mr}>
+    <CardContainer mr={mr} onPress={onPress}>
       <CardText title={title} subTitle={subTitle} userId={userId} />
       <CardImage postId={id} />
     </CardContainer>

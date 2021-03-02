@@ -14,18 +14,20 @@ import PostImage from "../components/Post/PostImage";
 import { Divider } from "react-native-elements";
 import Colors from "../config/colors";
 
-export default function ReadPostScreen({ postId }) {
+export default function ReadPostScreen({ navigation, route }) {
+  useEffect(() => {
+    // use the http get call here
+  }, []);
   return (
     <ScrollView
       style={{
         backgroundColor: Colors.white,
       }}
-      showsVerticalScrollIndicator={false}
     >
       <PostImage />
       <PostCard>
-        <PostDetails />
-        <PostContent />
+        <PostDetails userId={route.params.userId} title={route.params.title} />
+        <PostContent body={route.params.body} />
       </PostCard>
       {/* Comment Component on the post screen */}
       <Divider style={styles.divider} />

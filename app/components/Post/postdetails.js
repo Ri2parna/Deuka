@@ -8,12 +8,10 @@ import PublicoText from "../PublicoText";
 
 const ShimmerPlaceholder = createShimmerPlaceholder(LinearGradient);
 
-export default function PostDetails() {
+export default function PostDetails({ userId, title, body }) {
   return (
     <View>
-      <PublicoText size={40}>
-        A medium title for displaying on a screen
-      </PublicoText>
+      <PublicoText size={40}>{title}</PublicoText>
       <Divider style={styles.divider} />
       <View style={styles.avatar}>
         <Avatar />
@@ -59,16 +57,6 @@ const AvatarName = () => {
   return (
     <ShimmerPlaceholder visible={true}>
       <Text style={{ paddingHorizontal: 4 }}>Jane Doe on 22/22/2222</Text>
-    </ShimmerPlaceholder>
-  );
-};
-
-const Title = () => {
-  return (
-    <ShimmerPlaceholder visible={true}>
-      <Text style={{ fontSize: 25, fontWeight: "bold" }}>
-        Introducing an efficient Big O analyzer
-      </Text>
     </ShimmerPlaceholder>
   );
 };

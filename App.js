@@ -22,6 +22,10 @@ const getData = async () => {
 
 export default function App() {
   const [isLog, setIsLog] = useState(false);
+  const [Username, setUsername] = useState(null);
+  const [UserEmail, setUserEmail] = useState(null);
+  const [UserPassword, setUserPassword] = useState(null);
+  const [UserToken, setUserToken] = useState(null);
   const [Loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -35,7 +39,20 @@ export default function App() {
     return <AppLoading />;
   }
   return (
-    <ReactContext.Provider value={{ isLog, setIsLog }}>
+    <ReactContext.Provider
+      value={{
+        isLog,
+        setIsLog,
+        Username,
+        setUsername,
+        UserEmail,
+        setUserEmail,
+        UserPassword,
+        setUserPassword,
+        UserToken,
+        setUserToken,
+      }}
+    >
       <NavigationContainer>
         {isLog ? <AppNav /> : <AuthNav />}
       </NavigationContainer>

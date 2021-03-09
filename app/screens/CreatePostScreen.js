@@ -1,15 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Dimensions, StatusBar, StyleSheet } from "react-native";
-import { TextInput } from "react-native-gesture-handler";
 import * as Yup from "yup";
-import AppTextInput from "../components/AppTextInput";
+import { API_VERSION, BASE_URL } from "../../settings";
 
 import { AppForm, AppFormField, SubmitButton } from "../components/forms";
 import FormImagePicker from "../components/forms/FormImagePicker";
 import Screen from "../components/Screen";
-// import listingApi from "../api/listings";
-
-// import useLocation from "../hooks/useLocation";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
@@ -21,32 +17,42 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function CreatePostScreen() {
-  // const location = useLocation();
-
-  const handleSubmit = async (listing) => {
-    // const result = await listingApi.addListing(listing);
-    const result = null;
-    if (!result.ok) {
-      return alert("Could not save the data");
+  const handleSubmit = async ({ userId, title, subTitle, body }) => {
+    try {
+      fetch(BASE_URL + API_VERSION + "/userd" + "post", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId: userId,
+          title: title,
+          subTitle: subTitle,
+          body: body,
+        }),
+      })
+        .then((res) => res.json)
+        .then((data) => console.log(data));
+    } catch (error) {
+      console.log(error);
     }
-    alert("Success");
-    // console.log(listing);
   };
 
   return (
     <Screen style={styles.container}>
       <AppForm
         initialValues={{ title: "", subtitle: "" }}
-        onSubmit={() => null}
+        onSubmit={handleSubmit}
       >
         <AppFormField maxLength={255} name="title" placeholder="Title" />
         <AppFormField maxLength={255} name="subTitle" placeholder="Sub-title" />
         <AppFormField
           maxLength={255}
           multiline
-          name="description"
+          name="body"
           numberOfLines={3}
-          placeholder="Description"
+          placeholder="body"
         />
         <SubmitButton title="Post" />
       </AppForm>

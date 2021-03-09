@@ -27,6 +27,7 @@ const storeData = async (value) => {
 
 export default function LoginScreen({ navigation, ...props }) {
   const reactContext = useContext(ReactContext);
+  const { UserEmail, setUserEmail, UserPassword, setUserPassword, UserToken, setUserToken} = reactContext;
   const handleSubmit = ({ email, password }) => {
     try {
       fetch(LOGIN_URL, {
@@ -46,6 +47,9 @@ export default function LoginScreen({ navigation, ...props }) {
             alert("Login Error");
           } else {
             storeData(data.user);
+            setUserEmail(email);
+            setUserPassword(password);
+            setUserToken(data.user);
             navigation.navigate("AppNav");
           }
         })

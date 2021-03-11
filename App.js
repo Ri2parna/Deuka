@@ -7,9 +7,9 @@ import AuthNav from "./app/components/navigation/AuthNav";
 import ReactContext from "./app/hooks/useReactContext";
 import AppLoading from "expo-app-loading";
 
-const getData = async () => {
+const getData = async (key = "isUserLoggedIn") => {
   try {
-    const value = await AsyncStorage.getItem("isUserLoggedIn");
+    const value = await AsyncStorage.getItem(key);
     if (value !== null) {
       return true;
     } else {

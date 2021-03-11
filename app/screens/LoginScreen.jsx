@@ -17,9 +17,9 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required().min(6).label("Password"),
 });
 
-const storeData = async (value) => {
+const storeData = async (key = "isUserLoggedIn", value) => {
   try {
-    await AsyncStorage.setItem("isUserLoggedIn", String(value));
+    await AsyncStorage.setItem(key, String(value));
   } catch (e) {
     console.error(e);
   }
@@ -27,7 +27,14 @@ const storeData = async (value) => {
 
 export default function LoginScreen({ navigation, ...props }) {
   const reactContext = useContext(ReactContext);
-  const { UserEmail, setUserEmail, UserPassword, setUserPassword, UserToken, setUserToken} = reactContext;
+  const {
+    UserEmail,
+    setUserEmail,
+    UserPassword,
+    setUserPassword,
+    UserToken,
+    setUserToken,
+  } = reactContext;
   const handleSubmit = ({ email, password }) => {
     try {
       fetch(LOGIN_URL, {
@@ -49,7 +56,6 @@ export default function LoginScreen({ navigation, ...props }) {
             storeData(data.user);
             setUserEmail(email);
             setUserPassword(password);
-            setUserToken(data.user);
             navigation.navigate("AppNav");
           }
         })

@@ -8,6 +8,7 @@ import Card from "../components/Card";
 import GreetingSection from "../components/Greeting";
 import Colors from "../config/colors";
 import PublicoText from "../components/PublicoText";
+import { BASE_URL, API_VERSION } from "../../settings.js";
 
 const HomeScreen = ({ navigation }) => {
   const [fontsLoaded, setFontLoadState] = useState(false);
@@ -22,7 +23,7 @@ const HomeScreen = ({ navigation }) => {
 
   useEffect(() => {
     loadFont().then(setFontLoadState);
-    fetch("https://jsonplaceholder.typicode.com/posts")
+    fetch(BASE_URL + API_VERSION + "posts")
       .then((response) => response.json())
       .then((json) => setData(json))
       .catch((error) => console.error(error))

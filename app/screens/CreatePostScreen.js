@@ -19,7 +19,7 @@ const validationSchema = Yup.object().shape({
 export default function CreatePostScreen() {
   const handleSubmit = async ({ userId, title, subTitle, body }) => {
     try {
-      fetch(BASE_URL + API_VERSION + "/userd" + "post", {
+      fetch(BASE_URL + API_VERSION + "/userId" + "post", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -32,7 +32,7 @@ export default function CreatePostScreen() {
           body: body,
         }),
       })
-        .then((res) => res.json)
+        .then((res) => res.json())
         .then((data) => console.log(data));
     } catch (error) {
       console.log(error);

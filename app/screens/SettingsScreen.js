@@ -34,7 +34,12 @@ export default function SettingsScreen({ navigation }) {
           justifyContent: "center",
         }}
       >
-        <AppButton title="SignOut" onPress={() => removeValue()} />
+        <AppButton
+          mr={16}
+          color={"error"}
+          title="SignOut"
+          onPress={() => removeValue()}
+        />
       </View>
     </View>
   );

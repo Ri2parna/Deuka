@@ -28,6 +28,8 @@ const storeData = async (key = "isUserLoggedIn", value) => {
 export default function LoginScreen({ navigation, ...props }) {
   const reactContext = useContext(ReactContext);
   const {
+    Username,
+    setUsername,
     UserEmail,
     setUserEmail,
     UserPassword,

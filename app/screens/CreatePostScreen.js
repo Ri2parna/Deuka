@@ -6,6 +6,7 @@ import { API_VERSION, BASE_URL } from "../../settings";
 import { AppForm, AppFormField, SubmitButton } from "../components/forms";
 import FormImagePicker from "../components/forms/FormImagePicker";
 import Screen from "../components/Screen";
+import ReactContext from "../hooks/useReactContext";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
@@ -17,9 +18,11 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function CreatePostScreen() {
+  const reactContext = useContext(ReactContext);
+  const { Username, UserEmail, UserPassword, UserToken } = reactContext;
   const handleSubmit = async ({ userId, title, subTitle, body }) => {
     try {
-      fetch(BASE_URL + API_VERSION + "/userId" + "post", {
+      fetch(BASE_URL + API_VERSION + "/testuser/" + "post", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -27,13 +30,14 @@ export default function CreatePostScreen() {
         },
         body: JSON.stringify({
           userId: userId,
+          username: username,
           title: title,
           subTitle: subTitle,
           body: body,
         }),
       })
         .then((res) => res.json())
-        .then((data) => console.log(data));
+        .catch((err) => console.log(err));
     } catch (error) {
       console.log(error);
     }

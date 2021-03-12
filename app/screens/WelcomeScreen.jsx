@@ -33,7 +33,11 @@ function WelcomeScreen({ navigation }) {
         source={require("../assets/rhino.png")}
       />
       <View style={styles.buttonsContainer}>
-        <AppButton title="Login" onPress={() => navigation.navigate("Login")} />
+        <AppButton
+          mb={4}
+          title="Login"
+          onPress={() => navigation.navigate("Login")}
+        />
         <AppButton
           title="Register"
           onPress={() => navigation.navigate("Register")}

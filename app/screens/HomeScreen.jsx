@@ -7,7 +7,6 @@ import { FlatList } from "react-native-gesture-handler";
 import Card from "../components/Card";
 import GreetingSection from "../components/Greeting";
 import Colors from "../config/colors";
-import PublicoText from "../components/PublicoText";
 import { BASE_URL, API_VERSION } from "../../settings.js";
 
 const HomeScreen = ({ navigation }) => {
@@ -40,36 +39,38 @@ const HomeScreen = ({ navigation }) => {
   if (!fontsLoaded || isLoading) return <AppLoading />;
 
   return (
-    <>
-      <FlatList
-        style={{ backgroundColor: Colors.white }}
-        data={Data}
-        renderItem={({ item }) => {
-          return (
-            <Card
-              id={item.id}
-              title={item.title}
-              userId={item.userId}
-              subTitle={"a short subtitle"}
-              onPress={() => {
-                navigation.navigate("PostContent", item);
-              }}
-            />
-          );
-        }}
-        keyExtractor={(item) => item.title}
-        ListEmptyComponent={() => {
-          return <Text>Nothing to Display for now</Text>;
-        }}
-        ListHeaderComponent={() => (
-          <>
-            <GreetingSection navigation={navigation} />
-            <Text style={styles.headline}>For You</Text>
-          </>
-        )}
-        extraData={navigation}
-      />
-    </>
+    <FlatList
+      style={{ backgroundColor: Colors.white }}
+      data={Data}
+      renderItem={({ item }) => {
+        return (
+          <Card
+            id={item.id}
+            title={item.title}
+            userId={item.userId}
+            subTitle={item.subTitle}
+            onPress={() => {
+              navigation.navigate("PostContent", item);
+            }}
+          />
+        );
+      }}
+      keyExtractor={(item) => item.title}
+      ListEmptyComponent={() => {
+        return (
+          <Text style={{ textAlign: "center" }}>
+            Nothing to Display for now
+          </Text>
+        );
+      }}
+      ListHeaderComponent={() => (
+        <>
+          <GreetingSection navigation={navigation} />
+          <Text style={styles.headline}>For You</Text>
+        </>
+      )}
+      extraData={navigation}
+    />
   );
 };
 const styles = StyleSheet.create({

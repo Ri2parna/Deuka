@@ -8,7 +8,7 @@ import NotificationsScreen from "../../screens/notificationScreen";
 import { HomeScreen } from "../../screens/HomeScreen";
 import ReadPostScreen from "../../screens/ReadPostScreen";
 import ProfileScreen from "../../screens/ProfileScreen";
-import { SearchScreen } from "../../screens/Screens";
+import SearchScreen from "../../screens/SearchScreen";
 import CreatePostScreen from "../../screens/CreatePostScreen";
 import SettingsScreen from "../../screens/SettingsScreen";
 

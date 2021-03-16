@@ -19,10 +19,11 @@ const validationSchema = Yup.object().shape({
 
 export default function CreatePostScreen() {
   const reactContext = useContext(ReactContext);
-  const { Username, UserEmail, UserPassword, UserToken } = reactContext;
+  const { Username, UserId, UserEmail, UserPassword, UserToken } = reactContext;
   const handleSubmit = async ({ userId, title, subTitle, body }) => {
+    console.log(BASE_URL + API_VERSION + "username" + "/post");
     try {
-      fetch(BASE_URL + API_VERSION + "/testuser/" + "post", {
+      fetch(BASE_URL + API_VERSION + "username" + "/post", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -30,13 +31,14 @@ export default function CreatePostScreen() {
         },
         body: JSON.stringify({
           userId: userId,
-          username: username,
+          username: Username,
           title: title,
           subTitle: subTitle,
           body: body,
         }),
       })
         .then((res) => res.json())
+        .then((data) => console.log(data))
         .catch((err) => console.log(err));
     } catch (error) {
       console.log(error);

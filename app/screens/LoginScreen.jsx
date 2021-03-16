@@ -29,6 +29,8 @@ export default function LoginScreen({ navigation, ...props }) {
   const reactContext = useContext(ReactContext);
   const {
     Username,
+    UserId,
+    setUserId,
     setUsername,
     UserEmail,
     setUserEmail,
@@ -55,9 +57,12 @@ export default function LoginScreen({ navigation, ...props }) {
           if (data?.error) {
             alert("Login Error");
           } else {
-            storeData(data.user);
-            setUserEmail(email);
-            setUserPassword(password);
+            storeData("isUserLoggedIn", true);
+            storeData("userId", data.user._id);
+            storeData("username", data.user.username);
+            storeData("email", data.user.email);
+            storeData("password", password);
+            storeData("token", data.token);
             navigation.navigate("AppNav");
           }
         })

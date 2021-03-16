@@ -15,9 +15,9 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().required().min(6).label("Password"),
 });
 
-const storeData = async (value) => {
+const storeData = async (key, value) => {
   try {
-    await AsyncStorage.setItem("isUserLoggedIn", String(value));
+    await AsyncStorage.setItem(key, String(value));
   } catch (e) {
     console.error(e);
   }
@@ -25,6 +25,7 @@ const storeData = async (value) => {
 
 function RegisterScreen({ navigation, ...props }) {
   const handleSubmit = ({ name, email, password }) => {
+    console.log(email, password, name);
     try {
       fetch(SIGNUP_URL, {
         method: "POST",
@@ -33,7 +34,7 @@ function RegisterScreen({ navigation, ...props }) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: name,
+          username: name,
           email: email,
           password: password,
         }),
@@ -43,7 +44,12 @@ function RegisterScreen({ navigation, ...props }) {
           if (data?.error || data?.caughtErrors) {
             alert("Signup Error");
           } else {
-            storeData(data.user);
+            storeData("isUserLoggedIn", true);
+            storeData("userId", data.user._id);
+            storeData("username", data.user.username);
+            storeData("email", data.user.email);
+            storeData("password", password);
+            storeData("token", data.token);
             navigation.navigate("AppNav");
           }
         })

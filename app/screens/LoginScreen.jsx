@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { View, StyleSheet, Text, Dimensions } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Yup from "yup";
 
 import Screen from "../components/Screen";
@@ -11,19 +10,12 @@ import { LOGIN_URL } from "../../settings";
 import Colors from "../config/colors";
 import BigText from "../components/BigText";
 import SubtitleText from "../components/SubtitleText";
+import { storeData } from "../utils/asyncStorage";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
   password: Yup.string().required().min(6).label("Password"),
 });
-
-const storeData = async (key = "isUserLoggedIn", value) => {
-  try {
-    await AsyncStorage.setItem(key, String(value));
-  } catch (e) {
-    console.error(e);
-  }
-};
 
 export default function LoginScreen({ navigation, ...props }) {
   const reactContext = useContext(ReactContext);

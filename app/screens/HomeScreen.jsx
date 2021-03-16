@@ -11,6 +11,7 @@ import { BASE_URL, API_VERSION } from "../../settings.js";
 
 const HomeScreen = ({ navigation }) => {
   const [fontsLoaded, setFontLoadState] = useState(false);
+
   async function loadFont() {
     await Font.loadAsync({
       "Publico-Regular": require("../assets/fonts/Publico.ttf"),

@@ -1,5 +1,7 @@
 import React from "react";
 import { Text, StyleSheet } from "react-native";
+import BitterFontText from "../BitterFontText";
+
 export default function PostContent({ body }) {
-  return <Text style={{ fontSize: 16 }}>{body}</Text>;
+  return <BitterFontText size={16}>{children}</BitterFontText>;
 }

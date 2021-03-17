@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useReducer } from "react";
 import { Dimensions, StatusBar, StyleSheet } from "react-native";
 import * as Yup from "yup";
 import { API_VERSION, BASE_URL } from "../../settings";
@@ -19,30 +19,25 @@ const validationSchema = Yup.object().shape({
 
 export default function CreatePostScreen() {
   const reactContext = useContext(ReactContext);
-  const { Username, UserId, UserEmail, UserPassword, UserToken } = reactContext;
-  const handleSubmit = async ({ userId, title, subTitle, body }) => {
-    console.log(BASE_URL + API_VERSION + "username" + "/post");
-    try {
-      fetch(BASE_URL + API_VERSION + "username" + "/post", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userId: userId,
-          username: Username,
-          title: title,
-          subTitle: subTitle,
-          body: body,
-        }),
-      })
-        .then((res) => res.json())
-        .then((data) => console.log(data))
-        .catch((err) => console.log(err));
-    } catch (error) {
-      console.log(error);
-    }
+  const { Username, UserId } = reactContext;
+
+  const handleSubmit = async ({ title, subTitle, body }) => {
+    fetch(BASE_URL + API_VERSION + "username" + "/post", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userId: UserId,
+        Username,
+        title,
+        subTitle,
+        body,
+      }),
+    })
+      .then((res) => res.json())
+      .catch((err) => console.log(err));
   };
 
   return (

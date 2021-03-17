@@ -8,20 +8,13 @@ import SubtitleText from "../components/SubtitleText";
 import Screen from "../components/Screen";
 import { AppForm, AppFormField, SubmitButton } from "../components/forms";
 import { SIGNUP_URL } from "../../settings";
+import { storeData } from "../utils/asyncStorage";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().label("Name"),
   email: Yup.string().required().email().label("Email"),
   password: Yup.string().required().min(6).label("Password"),
 });
-
-const storeData = async (key, value) => {
-  try {
-    await AsyncStorage.setItem(key, String(value));
-  } catch (e) {
-    console.error(e);
-  }
-};
 
 function RegisterScreen({ navigation, ...props }) {
   const handleSubmit = ({ name, email, password }) => {
@@ -92,7 +85,7 @@ function RegisterScreen({ navigation, ...props }) {
             autoCorrect={false}
             secureTextEntry
           />
-          <SubmitButton title="Register" />
+          <SubmitButton title="Register" mb={8} />
           <SubtitleText
             text="By creating your account you agree with to our Terms and Conditions"
             fontSize={12}

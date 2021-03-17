@@ -1,24 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import AppNav from "./app/components/navigation/AppNav";
 import AuthNav from "./app/components/navigation/AuthNav";
 import ReactContext from "./app/hooks/useReactContext";
 import AppLoading from "expo-app-loading";
 
-const getData = async (key = "isUserLoggedIn") => {
-  try {
-    const value = await AsyncStorage.getItem(key);
-    if (value !== null) {
-      return true;
-    } else {
-      return false;
-    }
-  } catch (e) {
-    console.error(e);
-  }
-};
+import { getData } from "./app/utils/asyncStorage";
 
 export default function App() {
   const [isLog, setIsLog] = useState(false);
@@ -38,7 +26,7 @@ export default function App() {
       setUserPassword(password)
     );
     const p5 = getData("token").then((token) => setUserToken(token));
-    Promise.all([p0, p1, p2, p3, p4, p5]).then(setLoading(false));
+    Promise.all([p0, p1, p2, p3, p4, p5]).then(() => setLoading(false));
   }, []);
   if (Loading) {
     return <AppLoading />;

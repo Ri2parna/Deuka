@@ -6,19 +6,21 @@ import { createShimmerPlaceholder } from "react-native-shimmer-placeholder";
 
 const ShimmerPlaceholder = createShimmerPlaceholder(LinearGradient);
 
+async function loadFont() {
+  await Font.loadAsync({
+    "Publico-Regular": require("../assets/fonts/Publico.ttf"),
+  });
+  return true;
+}
+
 export default function PublicoText({ children, size, ...props }) {
   const [fontsLoaded, setFontLoadState] = useState(false);
-  async function loadFont() {
-    await Font.loadAsync({
-      "Publico-Regular": require("../assets/fonts/Publico.ttf"),
-    });
-    return true;
-  }
+
   useEffect(() => {
     loadFont()
       .then(setFontLoadState)
       .catch(() => {
-        console.log("Errors found!!");
+        console.warn("Errors found while loading publico font");
       });
   }, []);
 

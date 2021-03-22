@@ -20,9 +20,8 @@ export default function ReadPostScreen({ navigation, route }) {
   }, []);
   return (
     <ScrollView
-      style={{
-        backgroundColor: Colors.white,
-      }}
+      style={{ backgroundColor: Colors.white }}
+      contentContainerStyle={{ display: "flex" }}
     >
       <PostImage />
       <PostCard>

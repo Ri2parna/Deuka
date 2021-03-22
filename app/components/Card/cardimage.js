@@ -5,14 +5,18 @@ import { createShimmerPlaceholder } from "react-native-shimmer-placeholder";
 
 const ShimmerPlaceholder = createShimmerPlaceholder(LinearGradient);
 
-export default function CardImage({ postId }) {
+export default function CardImage({
+  captionImageUrl = "https://i.pravatar.cc/200?img=9",
+}) {
   const [ImageLoading, setImageLoading] = useState(true);
+
+  console.log(captionImageUrl);
   return (
     <View style={styles.image}>
       <ShimmerPlaceholder style={styles.image} visible={!ImageLoading}>
         <Image
           style={styles.image}
-          source={{ uri: "https://i.pravatar.cc/200?img=" + postId }}
+          source={{ uri: captionImageUrl }}
           onLoadEnd={() => setImageLoading(false)}
         />
       </ShimmerPlaceholder>

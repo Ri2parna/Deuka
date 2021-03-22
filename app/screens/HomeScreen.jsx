@@ -49,6 +49,7 @@ const HomeScreen = ({ navigation }) => {
             id={item.id}
             title={item.title}
             userId={item.userId}
+            captionImageUrl={item.captionImageUrl}
             subTitle={item.subTitle}
             onPress={() => {
               navigation.navigate("PostContent", item);

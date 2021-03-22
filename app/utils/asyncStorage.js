@@ -16,7 +16,7 @@ const getData = async (key = "isUserLoggedIn") => {
 
 const storeData = async (key, value) => {
   try {
-    console.log(`Storing data: ${value}`);
+    // console.log(`Storing data: ${value}`);
     await AsyncStorage.setItem(key, String(value));
   } catch (e) {
     console.error(e);

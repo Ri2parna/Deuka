@@ -18,7 +18,6 @@ const validationSchema = Yup.object().shape({
 
 function RegisterScreen({ navigation, ...props }) {
   const handleSubmit = ({ name, email, password }) => {
-    console.log(email, password, name);
     try {
       fetch(SIGNUP_URL, {
         method: "POST",

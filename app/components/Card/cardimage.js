@@ -9,8 +9,6 @@ export default function CardImage({
   captionImageUrl = "https://i.pravatar.cc/200?img=9",
 }) {
   const [ImageLoading, setImageLoading] = useState(true);
-
-  console.log(captionImageUrl);
   return (
     <View style={styles.image}>
       <ShimmerPlaceholder style={styles.image} visible={!ImageLoading}>

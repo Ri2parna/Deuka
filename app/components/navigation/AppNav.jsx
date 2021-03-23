@@ -11,6 +11,7 @@ import ProfileScreen from "../../screens/ProfileScreen";
 import SearchScreen from "../../screens/SearchScreen";
 import CreatePostScreen from "../../screens/CreatePostScreen";
 import SettingsScreen from "../../screens/SettingsScreen";
+import DrawerScreen from "../../screens/DrawerScreen";
 
 const Drawer = createDrawerNavigator();
 
@@ -23,6 +24,7 @@ export default function AppNav() {
         headerStyle: styles.headerStyle,
         headerTitleAlign: "center",
       }}
+      drawerContent={(props) => <DrawerScreen {...props} />}
     >
       <Drawer.Screen
         name="Home"

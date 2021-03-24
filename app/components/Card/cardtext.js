@@ -8,38 +8,29 @@ const ShimmerPlaceholder = createShimmerPlaceholder(LinearGradient);
 import Colors from "../../config/colors";
 import SubTitle from "../SubTitle";
 
-export default function CardText({ title, userId, subTitle }) {
-  const [Loading, setLoading] = useState(true);
+export default function CardText({
+  title,
+  authorName = "Rituparna Das",
+  subTitle,
+}) {
+  const [Loading, setLoading] = useState(false);
   const [User, setUser] = useState({});
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users/" + userId)
-      .then((response) => response.json())
-      .then((json) => setUser(json))
-      .catch((error) => console.error(error))
-      .finally(() => setLoading(false));
-  });
+  // useEffect(() => {
+  //   fetch("https://jsonplaceholder.typicode.com/users/" + userId)
+  //     .then((response) => response.json())
+  //     .then((json) => setUser(json))
+  //     .catch((error) => console.error(error))
+  //     .finally(() => setLoading(false));
+  // });
   return (
-    <View
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        width: "70%",
-      }}
-    >
+    <View style={styles.flexCenter}>
       <ShimmerPlaceholder
         style={{ width: "100%", marginBottom: 2 }}
         visible={!Loading}
       >
         <Text style={{ fontWeight: "bold", fontSize: 20 }}>{title}</Text>
       </ShimmerPlaceholder>
-      <View
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          paddingVertical: 8,
-        }}
-      >
+      <View style={styles.flexRowCenter}>
         <View style={{ height: 28, width: 28, borderRadius: 10 }}>
           <ShimmerPlaceholder
             width={28}
@@ -48,7 +39,7 @@ export default function CardText({ title, userId, subTitle }) {
             visible={!Loading}
           >
             <Image
-              style={{ height: 24, width: 24, borderRadius: 10 }}
+              style={styles.avatar}
               source={{
                 uri: "https://i.pravatar.cc/200" + "?u=" + User.username,
               }}
@@ -57,9 +48,7 @@ export default function CardText({ title, userId, subTitle }) {
         </View>
 
         <ShimmerPlaceholder visible={!Loading}>
-          <Text style={{ paddingHorizontal: 4, fontSize: 14 }}>
-            {User.name}
-          </Text>
+          <SubTitle color={Colors["grey-7"]}>{authorName}</SubTitle>
         </ShimmerPlaceholder>
       </View>
       <ShimmerPlaceholder
@@ -67,17 +56,26 @@ export default function CardText({ title, userId, subTitle }) {
         visible={!Loading}
       >
         <SubTitle>{subTitle}</SubTitle>
-        {/* <Text style={{ fontSize: 16, color: Colors["grey-7"], lineHeight: 22 }}>
-          {subTitle}
-        </Text> */}
       </ShimmerPlaceholder>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  avatar: { height: 24, width: 24, borderRadius: 10 },
   headingStyle: {
     flexWrap: "wrap",
     fontWeight: "bold",
+  },
+  flexCenter: {
+    display: "flex",
+    justifyContent: "center",
+    width: "70%",
+  },
+  flexRowCenter: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    paddingVertical: 8,
   },
 });

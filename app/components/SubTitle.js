@@ -6,6 +6,7 @@ const SubTitle = ({
   color = "gray",
   size = 16,
   padding = 0,
+  center,
   ...props
 }) => {
   return (
@@ -15,6 +16,7 @@ const SubTitle = ({
         fontSize: size,
         padding: padding,
         fontWeight: "bold",
+        textAlign: center && "center",
       }}
     >
       {children}

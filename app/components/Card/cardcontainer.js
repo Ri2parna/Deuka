@@ -1,24 +1,17 @@
 import React from "react";
-import { Dimensions, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-import Colors from "../../config/colors";
+const cardcontainer = ({ children, onPress, ...props }) => {
+  return (
+    <TouchableOpacity style={styles.CardContainer} onPress={onPress}>
+      {children}
+    </TouchableOpacity>
+  );
+};
 
-class CardContainer extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render(props) {
-    return (
-      <TouchableOpacity
-        style={styles.CardContainer}
-        onPress={this.props.onPress}
-      >
-        {this.props.children}
-      </TouchableOpacity>
-    );
-  }
-}
+export default cardcontainer;
+
 const styles = StyleSheet.create({
   CardContainer: {
     backgroundColor: "#F5F5F5",
@@ -30,5 +23,3 @@ const styles = StyleSheet.create({
     padding: 16,
   },
 });
-
-export default CardContainer;

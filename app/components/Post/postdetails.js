@@ -3,19 +3,18 @@ import { View, Text, Image, StyleSheet, Dimensions } from "react-native";
 import { Divider } from "react-native-elements";
 import { LinearGradient } from "expo-linear-gradient";
 import { createShimmerPlaceholder } from "react-native-shimmer-placeholder";
-import { Colors } from "../../config/colors";
 import PublicoText from "../PublicoText";
 
 const ShimmerPlaceholder = createShimmerPlaceholder(LinearGradient);
 
-export default function PostDetails({ userId, title, body }) {
+export default function PostDetails({ title, authorName }) {
   return (
     <View>
       <PublicoText size={40}>{title}</PublicoText>
       <Divider style={styles.divider} />
       <View style={styles.avatar}>
         <Avatar />
-        <AvatarName />
+        <AvatarName authorName={authorName} />
       </View>
     </View>
   );
@@ -53,10 +52,12 @@ const Avatar = () => {
   );
 };
 
-const AvatarName = () => {
+const AvatarName = ({ authorName }) => {
   return (
     <ShimmerPlaceholder visible={true}>
-      <Text style={{ paddingHorizontal: 4 }}>Jane Doe on 22/22/2222</Text>
+      <Text
+        style={{ paddingHorizontal: 4 }}
+      >{`${authorName} on 22/22/2222`}</Text>
     </ShimmerPlaceholder>
   );
 };

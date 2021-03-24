@@ -57,7 +57,7 @@ function RegisterScreen({ navigation, ...props }) {
         <Title size={32} color={Colors.secondary}>
           Welcome !
         </Title>
-        <SubTitle color={Colors["grey-8"]}>
+        <SubTitle center color={Colors["grey-8"]}>
           Please provide your details for your new account
         </SubTitle>
       </View>

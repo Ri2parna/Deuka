@@ -48,9 +48,12 @@ const HomeScreen = ({ navigation }) => {
       renderItem={({ item }) => {
         return (
           <Card
-            id={item.id}
+            id={item._id}
+            postId={item.postId}
+            createdAt={item.createdAt}
             title={item.title}
-            userId={item.userId}
+            authorId={item.userId}
+            authorName={item.authorName}
             captionImageUrl={item.captionImageUrl}
             subTitle={item.subTitle}
             onPress={() => {

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { View, Text } from "react-native";
+import { View, Text, Dimensions } from "react-native";
 import {
   DrawerContentScrollView,
   DrawerItem,
@@ -15,8 +15,10 @@ import {
 } from "../components/Icons";
 import CardImage from "../components/Card/cardimage";
 import PublicoText from "../components/PublicoText";
+import Colors from "../config/colors";
 
 const DrawerScreen = ({ navigation, ...props }) => {
+  const { width, height } = Dimensions.get("window");
   return (
     <DrawerContentScrollView {...props}>
       <View
@@ -25,12 +27,16 @@ const DrawerScreen = ({ navigation, ...props }) => {
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
+          height: height * 0.3,
+          backgroundColor: Colors.primary,
         }}
       >
         <CardImage />
         <View>
-          <PublicoText size={21}>Username</PublicoText>
-          <Text>UserEmail</Text>
+          <PublicoText style={{ padding: 8 }} size={21}>
+            Username
+          </PublicoText>
+          <Text style={{ padding: 8 }}>UserEmail</Text>
         </View>
       </View>
       <DrawerItem

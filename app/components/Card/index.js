@@ -9,7 +9,7 @@ const Card = ({
   id,
   mr,
   title,
-  userId,
+  authorName,
   captionImageUrl,
   subTitle,
   onPress,
@@ -17,7 +17,7 @@ const Card = ({
 }) => {
   return (
     <CardContainer mr={mr} onPress={onPress}>
-      <CardText title={title} subTitle={subTitle} userId={userId} />
+      <CardText title={title} subTitle={subTitle} authorName={authorName} />
       <CardImage captionImageUrl={captionImageUrl} />
     </CardContainer>
   );

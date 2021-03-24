@@ -13,7 +13,7 @@ async function loadFont() {
   return true;
 }
 
-export default function PublicoText({ children, size, ...props }) {
+export default function PublicoText({ children, style, size, ...props }) {
   const [fontsLoaded, setFontLoadState] = useState(false);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ export default function PublicoText({ children, size, ...props }) {
       </ShimmerPlaceholder>
     );
   return (
-    <Text style={[{ fontFamily: "Publico-Regular", fontSize: size }]}>
+    <Text style={[{ fontFamily: "Publico-Regular", fontSize: size }, style]}>
       {children}
     </Text>
   );

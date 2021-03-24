@@ -18,15 +18,27 @@ export default function ReadPostScreen({ navigation, route }) {
   useEffect(() => {
     // use the http get call here
   }, []);
+  const {
+    id,
+    postId, // unique _id value where only the body of the item is stored
+    authorId,
+    authorName,
+    subTitle,
+    title,
+    captionImageUrl,
+    subTitle,
+    body,
+  } = route.params;
   return (
-    <ScrollView
-      style={{ backgroundColor: Colors.white }}
-      contentContainerStyle={{ display: "flex" }}
-    >
-      <PostImage />
+    <ScrollView style={{ backgroundColor: Colors.white }}>
+      <PostImage captionImageUrl={captionImageUrl} />
       <PostCard>
-        <PostDetails userId={route.params.userId} title={route.params.title} />
-        <PostContent body={route.params.body} />
+        <PostDetails
+          authorName={authorName}
+          title={title}
+          subTitle={subTitle}
+        />
+        <PostContent body={body} />
       </PostCard>
       {/* Comment Component on the post screen */}
       <Divider style={styles.divider} />

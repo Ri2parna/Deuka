@@ -6,6 +6,7 @@ import { createShimmerPlaceholder } from "react-native-shimmer-placeholder";
 const ShimmerPlaceholder = createShimmerPlaceholder(LinearGradient);
 
 import Colors from "../../config/colors";
+import SubTitle from "../SubTitle";
 
 export default function CardText({ title, userId, subTitle }) {
   const [Loading, setLoading] = useState(true);
@@ -65,9 +66,10 @@ export default function CardText({ title, userId, subTitle }) {
         style={{ width: "100%", marginBottom: 2 }}
         visible={!Loading}
       >
-        <Text style={{ fontSize: 16, color: Colors["grey-7"], lineHeight: 22 }}>
+        <SubTitle>{subTitle}</SubTitle>
+        {/* <Text style={{ fontSize: 16, color: Colors["grey-7"], lineHeight: 22 }}>
           {subTitle}
-        </Text>
+        </Text> */}
       </ShimmerPlaceholder>
     </View>
   );

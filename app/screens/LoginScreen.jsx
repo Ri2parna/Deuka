@@ -8,8 +8,8 @@ import { AppForm, AppFormField, SubmitButton } from "../components/forms";
 import ReactContext from "../hooks/useReactContext";
 import { LOGIN_URL } from "../../settings";
 import Colors from "../config/colors";
-import BigText from "../components/BigText";
-import SubtitleText from "../components/SubtitleText";
+import Title from "../components/Title";
+import SubTitle from "../components/SubTitle";
 import { storeData } from "../utils/asyncStorage";
 
 const validationSchema = Yup.object().shape({
@@ -65,9 +65,9 @@ export default function LoginScreen({ navigation, ...props }) {
   };
   return (
     <Screen>
-      <View style={[styles.centerItems, { flex: 1 }]}>
-        <BigText text="Welcome Back!" />
-        <SubtitleText text="Sign In to Continue" />
+      <View style={styles.flexGrowCenter}>
+        <Title size={32}>Welcome Back!</Title>
+        <SubTitle>Sign In to Continue</SubTitle>
       </View>
       <View style={styles.formContainer}>
         <AppForm
@@ -92,31 +92,18 @@ export default function LoginScreen({ navigation, ...props }) {
             secureTextEntry
           />
           <SubmitButton title="Login" />
-          <View
-            style={{
-              flex: 1,
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "center",
-              margin: 4,
-              top: 4,
-            }}
-          >
-            <Text
-              style={{
-                color: Colors["grey-6"],
-                fontWeight: "bold",
-                padding: 4,
-              }}
-            >
+          <View style={styles.flexRow}>
+            <SubTitle color={Colors["grey-8"]} padding={4} size={14}>
               Don't have an account ? -
-            </Text>
+            </SubTitle>
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate("Register");
               }}
             >
-              <Text style={{ color: Colors.primary, padding: 4 }}>SignUp</Text>
+              <SubTitle color={Colors.primary} padding={4} size={14}>
+                Sign Up
+              </SubTitle>
             </TouchableOpacity>
           </View>
         </AppForm>
@@ -126,20 +113,28 @@ export default function LoginScreen({ navigation, ...props }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 4,
+  flexGrowCenter: {
     display: "flex",
     alignItems: "center",
+    justifyContent: "center",
     flex: 1,
   },
-  centerItems: {
+  flexRow: {
+    flex: 1,
     display: "flex",
-    alignContent: "center",
+    flexDirection: "row",
     justifyContent: "center",
+    margin: 4,
+    top: 4,
   },
   formContainer: {
     flex: 1,
     padding: 16,
     width: Dimensions.get("window").width,
+  },
+  SubTitle: {
+    color: Colors["grey-6"],
+    fontWeight: "bold",
+    padding: 4,
   },
 });

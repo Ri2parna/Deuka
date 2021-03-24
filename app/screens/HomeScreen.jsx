@@ -1,6 +1,6 @@
 import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
-import { Text, StatusBar, View, StyleSheet } from "react-native";
+import { Text, StatusBar, StyleSheet } from "react-native";
 import React, { useState, useEffect } from "react";
 import { FlatList } from "react-native-gesture-handler";
 
@@ -8,6 +8,8 @@ import Card from "../components/Card";
 import GreetingSection from "../components/Greeting";
 import Colors from "../config/colors";
 import { BASE_URL, API_VERSION } from "../../settings.js";
+import SubTitle from "../components/SubTitle";
+import Title from "../components/Title";
 
 const HomeScreen = ({ navigation }) => {
   const [fontsLoaded, setFontLoadState] = useState(false);
@@ -59,11 +61,7 @@ const HomeScreen = ({ navigation }) => {
       }}
       keyExtractor={(item) => item.title}
       ListEmptyComponent={() => {
-        return (
-          <Text style={{ textAlign: "center" }}>
-            Nothing to Display for now
-          </Text>
-        );
+        return <SubTitle>Nothing to Display for now</SubTitle>;
       }}
       ListHeaderComponent={() => (
         <>

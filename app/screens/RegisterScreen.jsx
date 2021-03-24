@@ -3,12 +3,13 @@ import { Image, StyleSheet, View, Dimensions } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Yup from "yup";
 
-import BigText from "../components/BigText";
-import SubtitleText from "../components/SubtitleText";
+import Title from "../components/Title";
+import SubTitle from "../components/SubTitle";
 import Screen from "../components/Screen";
 import { AppForm, AppFormField, SubmitButton } from "../components/forms";
 import { SIGNUP_URL } from "../../settings";
 import { storeData } from "../utils/asyncStorage";
+import Colors from "../config/colors";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required().label("Name"),
@@ -53,8 +54,12 @@ function RegisterScreen({ navigation, ...props }) {
   return (
     <Screen style={styles.container}>
       <View style={[styles.centerItems, { flex: 1, padding: 4 }]}>
-        <BigText text="Welcome !" />
-        <SubtitleText text="Please provide your details for your new account" />
+        <Title size={32} color={Colors.secondary}>
+          Welcome !
+        </Title>
+        <SubTitle color={Colors["grey-8"]}>
+          Please provide your details for your new account
+        </SubTitle>
       </View>
       <View style={styles.formContainer}>
         <AppForm
@@ -85,7 +90,7 @@ function RegisterScreen({ navigation, ...props }) {
             secureTextEntry
           />
           <SubmitButton title="Register" mb={8} />
-          <SubtitleText
+          <SubTitle
             text="By creating your account you agree with to our Terms and Conditions"
             fontSize={12}
           />

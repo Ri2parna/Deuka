@@ -6,7 +6,14 @@ import { createShimmerPlaceholder } from "react-native-shimmer-placeholder";
 
 const ShimmerPlaceholder = createShimmerPlaceholder(LinearGradient);
 
-export default function BitterFontText({ children, size, ...props }) {
+export default function BitterFontText({
+  children,
+  size,
+  bold,
+  italic,
+  boldItalic,
+  ...props
+}) {
   const [fontsLoaded, setFontLoadState] = useState(false);
   async function loadFont() {
     await Font.loadAsync({
@@ -32,7 +39,18 @@ export default function BitterFontText({ children, size, ...props }) {
       </ShimmerPlaceholder>
     );
   return (
-    <Text style={[{ fontFamily: "Bitter-Regular", fontSize: size }]}>
+    <Text
+      style={[
+        {
+          fontFamily:
+            (bold && "Bitter-Bold") ||
+            (italic && "Bitter-Italic") ||
+            (boldItalic && "Bitter-BoldItalic") ||
+            "Bitter-Regular",
+          fontSize: size,
+        },
+      ]}
+    >
       {children}
     </Text>
   );

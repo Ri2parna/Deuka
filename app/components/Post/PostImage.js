@@ -18,7 +18,7 @@ export default function PostImage() {
 }
 const styles = StyleSheet.create({
   image: {
-    height: Dimensions.get("window").height * 0.4,
+    height: Dimensions.get("window").height * 0.5,
     width: Dimensions.get("window").width,
     // borderBottomLeftRadius: 24,
     // borderBottomRightRadius: 24,

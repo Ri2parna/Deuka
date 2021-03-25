@@ -4,17 +4,20 @@ import { Divider } from "react-native-elements";
 import { LinearGradient } from "expo-linear-gradient";
 import { createShimmerPlaceholder } from "react-native-shimmer-placeholder";
 import PublicoText from "../PublicoText";
+import moment from "moment";
+import SubTitle from "../SubTitle";
+import Colors from "../../config/colors";
 
 const ShimmerPlaceholder = createShimmerPlaceholder(LinearGradient);
 
-export default function PostDetails({ title, authorName }) {
+export default function PostDetails({ title, authorName, createdAt }) {
   return (
     <View>
       <PublicoText size={40}>{title}</PublicoText>
       <Divider style={styles.divider} />
       <View style={styles.avatar}>
         <Avatar />
-        <AvatarName authorName={authorName} />
+        <AuthorDetails authorName={authorName} createdAt={createdAt} />
       </View>
     </View>
   );
@@ -24,6 +27,7 @@ const styles = StyleSheet.create({
     height: 44,
     width: 44,
     borderRadius: 50,
+    marginRight: 4,
   },
   avatar: {
     display: "flex",
@@ -52,12 +56,17 @@ const Avatar = () => {
   );
 };
 
-const AvatarName = ({ authorName }) => {
+const AuthorDetails = ({ authorName = "Unknown", createdAt }) => {
   return (
-    <ShimmerPlaceholder visible={true}>
-      <Text
-        style={{ paddingHorizontal: 4 }}
-      >{`${authorName} on 22/22/2222`}</Text>
-    </ShimmerPlaceholder>
+    <View>
+      <ShimmerPlaceholder visible={true}>
+        <SubTitle color={Colors.secondary}>{authorName}</SubTitle>
+      </ShimmerPlaceholder>
+      <ShimmerPlaceholder visible={true}>
+        <SubTitle color={Colors["grey-8"]}>
+          {moment(createdAt).fromNow()}
+        </SubTitle>
+      </ShimmerPlaceholder>
+    </View>
   );
 };

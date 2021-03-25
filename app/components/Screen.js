@@ -1,4 +1,5 @@
 import React from "react";
+import { Dimensions } from "react-native";
 import {
   SafeAreaView,
   StyleSheet,
@@ -8,20 +9,16 @@ import {
 } from "react-native";
 
 function Screen({ children, style }) {
-  return (
-    <SafeAreaView style={[styles.screen, style]}>
-      <View style={style}>{children}</View>
-    </SafeAreaView>
-  );
+  return <SafeAreaView style={[styles.screen, style]}>{children}</SafeAreaView>;
 }
 
 const styles = StyleSheet.create({
   screen: {
     alignItems: "center",
-    height: "100%",
+    height: Dimensions.get("window").height,
     justifyContent: "center",
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
-    width: "100%",
+    width: Dimensions.get("window").width,
   },
 });
 

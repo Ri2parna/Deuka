@@ -1,15 +1,11 @@
 import React from "react";
-import { Dimensions } from "react-native";
-import { View, StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 
-export default class PostCard extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return <View style={styles.PostCardContainer}>{this.props.children}</View>;
-  }
-}
+const postcard = ({ children }) => {
+  return <View style={styles.PostCardContainer}>{children}</View>;
+};
+
+export default postcard;
 
 const styles = StyleSheet.create({
   PostCardContainer: {
@@ -17,9 +13,11 @@ const styles = StyleSheet.create({
     display: "flex",
     padding: "4%",
     paddingTop: "8%",
-    borderRadius: 32,
+    // borderRadius: 32,
     // backgroundColor: "rgba(211, 211, 211, 1)",
-    backgroundColor: "#F5F5F5",
-    top: -20,
+    // backgroundColor: "#F5F5F5",
+    backgroundColor: "red",
+    // top: -20,
+    // height: "100%",
   },
 });

@@ -9,7 +9,6 @@ import GreetingSection from "../components/Greeting";
 import Colors from "../config/colors";
 import { BASE_URL, API_VERSION } from "../../settings.js";
 import SubTitle from "../components/SubTitle";
-import Title from "../components/Title";
 
 const HomeScreen = ({ navigation }) => {
   const [fontsLoaded, setFontLoadState] = useState(false);
@@ -62,7 +61,7 @@ const HomeScreen = ({ navigation }) => {
           />
         );
       }}
-      keyExtractor={(item) => item.title}
+      keyExtractor={(item) => item._id}
       ListEmptyComponent={() => {
         return <SubTitle>Nothing to Display for now</SubTitle>;
       }}

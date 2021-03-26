@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, Dimensions, Image, Text, View } from "react-native";
 import { Divider } from "react-native-elements";
 import Colors from "../config/colors";
+import ReactContext from "../hooks/useReactContext";
 
 export default function ProfileScreen({ navigation, route }) {
+  const { Username, UserId } = useContext(ReactContext);
   const { authorName, authorId } = route.params || {
-    authorName: "test",
-    authorId: "okay",
+    authorName: Username,
+    authorId: UserId,
   };
+
   return (
     <View style={styles.screen}>
       <Image style={styles.image} source={require("../assets/Avatar.png")} />

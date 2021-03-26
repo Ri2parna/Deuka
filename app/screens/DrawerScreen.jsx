@@ -1,10 +1,7 @@
 import React, { useContext } from "react";
 import { View, Text, Dimensions } from "react-native";
-import {
-  DrawerContentScrollView,
-  DrawerItem,
-  DrawerItemList,
-} from "@react-navigation/drawer";
+import { DrawerContentScrollView, DrawerItem } from "@react-navigation/drawer";
+import ReactContext from "../hooks/useReactContext";
 import {
   HomeIcon,
   NotificationIcon,
@@ -19,6 +16,8 @@ import Colors from "../config/colors";
 
 const DrawerScreen = ({ navigation, ...props }) => {
   const { width, height } = Dimensions.get("window");
+  const { Username, UserEmail } = useContext(ReactContext);
+
   return (
     <DrawerContentScrollView {...props}>
       <View
@@ -34,9 +33,9 @@ const DrawerScreen = ({ navigation, ...props }) => {
         <CardImage />
         <View>
           <PublicoText style={{ padding: 8 }} size={21}>
-            Username
+            {Username}
           </PublicoText>
-          <Text style={{ padding: 8 }}>UserEmail</Text>
+          <Text style={{ padding: 8 }}>{UserEmail}</Text>
         </View>
       </View>
       <DrawerItem

@@ -36,12 +36,14 @@ export default function CreatePostScreen() {
         body,
       }),
     })
-      .then((res) => res.json())
+      .then(function handleResponse(res) {
+        console.log(res);
+      })
       .catch((err) => console.log(err));
   };
 
   return (
-    <Screen style={styles.container}>
+    <Screen>
       <AppForm
         initialValues={{ title: "", subtitle: "" }}
         onSubmit={handleSubmit}
@@ -60,12 +62,3 @@ export default function CreatePostScreen() {
     </Screen>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    height: Dimensions.get("window").height,
-    padding: 8,
-    display: "flex",
-    paddingBottom: StatusBar.currentHeight,
-  },
-});

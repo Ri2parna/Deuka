@@ -3,7 +3,7 @@ import { View, Text } from "react-native";
 
 const SubTitle = ({
   children,
-  color = "gray",
+  color = "black",
   size = 16,
   padding = 0,
   center,

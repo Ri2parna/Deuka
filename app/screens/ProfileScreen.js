@@ -3,12 +3,16 @@ import { StyleSheet, Dimensions, Image, Text, View } from "react-native";
 import { Divider } from "react-native-elements";
 import Colors from "../config/colors";
 
-export default function ProfileScreen({ username = "Jane Doe", ...props }) {
+export default function ProfileScreen({ navigation, route }) {
+  const { authorName, authorId } = route.params || {
+    authorName: "test",
+    authorId: "okay",
+  };
   return (
     <View style={styles.screen}>
       <Image style={styles.image} source={require("../assets/Avatar.png")} />
       <View style={styles.background}>
-        <Text style={styles.title}>{username}</Text>
+        <Text style={styles.title}>{authorName}</Text>
         <Divider style={styles.divider} />
         <View style={styles.box}>
           <View style={[styles.textbox, styles.rightBorder]}>

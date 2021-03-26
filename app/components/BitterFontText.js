@@ -8,6 +8,7 @@ const ShimmerPlaceholder = createShimmerPlaceholder(LinearGradient);
 
 export default function BitterFontText({
   children,
+  color = "black",
   size,
   bold,
   italic,
@@ -48,6 +49,7 @@ export default function BitterFontText({
             (boldItalic && "Bitter-BoldItalic") ||
             "Bitter-Regular",
           fontSize: size,
+          color: "black",
         },
       ]}
     >

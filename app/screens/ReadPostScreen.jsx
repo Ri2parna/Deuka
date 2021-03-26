@@ -3,12 +3,13 @@ import { Image } from "react-native";
 import { StyleSheet, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { createShimmerPlaceholder } from "react-native-shimmer-placeholder";
-import { ScrollView } from "react-native-gesture-handler";
+import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
 import BitterFontText from "../components/BitterFontText";
 import Title from "../components/Title";
 import SubTitle from "../components/SubTitle";
 import Colors from "../config/colors";
 import moment from "moment";
+import { Dimensions } from "react-native";
 
 const ShimmerPlaceholder = createShimmerPlaceholder(LinearGradient);
 
@@ -19,59 +20,33 @@ const ReadPostScreen = ({ navigation, route }) => {
     body,
     createdAt,
     authorName = "Rituparna Das",
+    authorId,
   } = route.params;
   return (
     <ScrollView
       contentContainerStyle={{
         padding: 16,
-        borderColor: "red",
-        borderWidth: 2,
       }}
     >
       <Title size={32}>{title}</Title>
       {/* author details */}
+      <Details
+        createdAt={createdAt}
+        authorName={authorName}
+        navigation={navigation}
+        authorId={authorId}
+      />
+      <SubTitle size={24}>{subTitle}</SubTitle>
       <View
         style={{
-          flexDirection: "row",
-          padding: 4,
+          minHeight: Dimensions.get("window").height * 0.42,
         }}
       >
-        <Avatar />
-        <View>
-          <ShimmerPlaceholder visible={true}>
-            <SubTitle color={Colors.secondary}>{authorName}</SubTitle>
-          </ShimmerPlaceholder>
-          <ShimmerPlaceholder visible={true}>
-            <SubTitle color={Colors["grey-8"]}>
-              {moment(createdAt).fromNow()}
-            </SubTitle>
-          </ShimmerPlaceholder>
-        </View>
-      </View>
-      <View>
-        <SubTitle>{subTitle}</SubTitle>
         <BitterFontText>{body}</BitterFontText>
       </View>
-      {/* <View
-        style={[
-          styles.bottomActions,
-          { position: "absolute", bottom: 0, left: 0, right: 0 },
-        ]}
-      /> */}
+      <View style={[styles.bottomActions]} />
 
-      {/* featured posts */}
-      <View>
-        <Title size={24}>Featured</Title>
-        <View style={{ padding: 8 }}>
-          <Text numberOfLines={3}>{text.slice(0, 600)}</Text>
-        </View>
-        <View style={{ padding: 8 }}>
-          <Text numberOfLines={3}>{text.slice(300, 600)}</Text>
-        </View>
-        <View style={{ padding: 8 }}>
-          <Text numberOfLines={3}>{text.slice(200, 600)}</Text>
-        </View>
-      </View>
+      <FeaturedPosts />
     </ScrollView>
   );
 };
@@ -114,5 +89,48 @@ const Avatar = () => {
         <Image style={styles.avatar_image} source={image_source} />
       </ShimmerPlaceholder>
     </View>
+  );
+};
+
+const FeaturedPosts = () => {
+  return (
+    <View style={{ padding: 8 }}>
+      <Title size={24}>Featured</Title>
+      <View style={{ paddingVertical: 8 }}>
+        <Text numberOfLines={3}>{text.slice(0, 600)}</Text>
+      </View>
+      <View style={{ paddingVertical: 8 }}>
+        <Text numberOfLines={3}>{text.slice(300, 600)}</Text>
+      </View>
+      <View style={{ paddingVertical: 8 }}>
+        <Text numberOfLines={3}>{text.slice(200, 600)}</Text>
+      </View>
+    </View>
+  );
+};
+
+const Details = ({ authorName, createdAt, navigation, authorId }) => {
+  let timediff = moment.utc(createdAt).local();
+  console.log(timediff);
+  return (
+    <TouchableOpacity
+      style={{
+        flexDirection: "row",
+        padding: 4,
+      }}
+      onPress={() => navigation.navigate("Profile", { authorName, authorId })}
+    >
+      <Avatar />
+      <View>
+        <ShimmerPlaceholder visible={true}>
+          <SubTitle color={Colors.secondary}>{authorName}</SubTitle>
+        </ShimmerPlaceholder>
+        <ShimmerPlaceholder visible={true}>
+          <SubTitle color={Colors["grey-8"]}>
+            {moment(createdAt).fromNow()}
+          </SubTitle>
+        </ShimmerPlaceholder>
+      </View>
+    </TouchableOpacity>
   );
 };

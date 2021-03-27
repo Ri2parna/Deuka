@@ -22,7 +22,7 @@ const GetStartedScreen = ({ navigation }) => {
     return <AppLoading />;
   } else {
     return (
-      <Screen style={{ backgroundColor: Colors.primary }}>
+      <Screen style={{ backgroundColor: Colors.primary, height: "100%" }}>
         <View style={styles.block_1}>
           <Text style={styles.text__2}>Deuka</Text>
           <Text style={{ fontSize: 16, color: Colors.white }}>

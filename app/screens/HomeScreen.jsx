@@ -1,14 +1,15 @@
-import * as Font from "expo-font";
-import AppLoading from "expo-app-loading";
-import { Text, StatusBar, StyleSheet } from "react-native";
 import React, { useState, useEffect } from "react";
 import { FlatList } from "react-native-gesture-handler";
+import * as Font from "expo-font";
+import { Text, StatusBar, StyleSheet, ActivityIndicator } from "react-native";
 
+import Screen from "../components/Screen";
 import Card from "../components/Card";
 import GreetingSection from "../components/Greeting";
 import Colors from "../config/colors";
 import { BASE_URL, API_VERSION } from "../../settings.js";
 import SubTitle from "../components/SubTitle";
+import PublicoText from "../components/PublicoText";
 
 const HomeScreen = ({ navigation }) => {
   const [fontsLoaded, setFontLoadState] = useState(false);
@@ -25,7 +26,13 @@ const HomeScreen = ({ navigation }) => {
   useEffect(() => {
     loadFont().then(setFontLoadState);
     fetch(BASE_URL + API_VERSION + "posts")
-      .then((response) => response.json())
+      .then(function handleResponse(response) {
+        if (response.ok) {
+          return response.json();
+        } else {
+          handleError(response);
+        }
+      })
       .then((json) => setData(json))
       .catch((error) => console.error(error))
       .finally(() => setLoading(false));
@@ -38,7 +45,12 @@ const HomeScreen = ({ navigation }) => {
     })
   );
 
-  if (!fontsLoaded || isLoading) return <AppLoading />;
+  if (!fontsLoaded || isLoading)
+    return (
+      <Screen>
+        <ActivityIndicator size={60} color={Colors.secondary} />
+      </Screen>
+    );
 
   return (
     <FlatList
@@ -68,7 +80,9 @@ const HomeScreen = ({ navigation }) => {
       ListHeaderComponent={() => (
         <>
           <GreetingSection navigation={navigation} />
-          <Text style={styles.headline}>For You</Text>
+          <PublicoText size={21} style={styles.headline}>
+            For You
+          </PublicoText>
         </>
       )}
       extraData={navigation}
@@ -77,12 +91,8 @@ const HomeScreen = ({ navigation }) => {
 };
 const styles = StyleSheet.create({
   headline: {
-    alignSelf: "flex-start",
-    paddingHorizontal: 16,
-    marginTop: 16,
-    marginBottom: 8,
-    fontFamily: "Publico-Regular",
-    fontSize: 21,
+    padding: 16,
+    paddingBottom: 8,
     color: Colors.secondary,
   },
   statusbarFix: {
@@ -93,36 +103,6 @@ const styles = StyleSheet.create({
 
 module.exports = { HomeScreen };
 
-{
-  /* Test Code to display items
-            <Card
-              title={"A short title"}
-              subTitle={"A short subtitle"}
-              userId={3}
-              mr={8}
-            />
-            <Card
-              title={"A kind of medium title"}
-              subTitle={"A kind of medium subtitle"}
-              userId={2}
-              mr={8}
-            />
-            <Card
-              title={"A long title to check for issues with user experience"}
-              subTitle={
-                "A long subtitle to check for issues with user experience"
-              }
-              userId={9}
-              mr={8}
-            />
-            <Card
-              title={
-                "A super long title as a final test to check for irregular display issues in small screens"
-              }
-              subTitle={
-                "A super long subtitle as a final test to check for irregular display issues in small screens"
-              }
-              userId={6}
-              mr={8}
-            /> */
+function handleError(response) {
+  return -1;
 }

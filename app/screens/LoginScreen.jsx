@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { View, StyleSheet, Text, Dimensions } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import * as Yup from "yup";
@@ -32,37 +32,44 @@ export default function LoginScreen({ navigation, ...props }) {
     setUserToken,
   } = reactContext;
   const handleSubmit = ({ email, password }) => {
-    try {
-      fetch(LOGIN_URL, {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
+    setLoginStatusColor(Colors.yellow);
+    fetch(LOGIN_URL, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    })
+      .then(function handleResponse(response) {
+        if (response.ok) {
+          return response.json();
+        } else {
+          handleError(response);
+        }
       })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data?.error) {
-            alert("Login Error");
-          } else {
-            storeData("isUserLoggedIn", true);
-            storeData("userId", data.user._id);
-            storeData("username", data.user.username);
-            storeData("email", data.user.email);
-            storeData("password", password);
-            storeData("token", data.token);
-            navigation.navigate("AppNav");
-          }
-        })
-        .catch((err) => console.log(err));
-    } catch (error) {
-      console.log(error);
-    }
+      .then((data) => {
+        if (!data?.error) {
+          setLoginStatusColor(Colors.red);
+          alert("Login Error");
+        } else {
+          setLoginStatusColor(Colors.success);
+          storeData("isUserLoggedIn", true);
+          storeData("userId", data.user._id);
+          storeData("username", data.user.username);
+          storeData("email", data.user.email);
+          storeData("password", password);
+          storeData("token", data.token);
+          navigation.navigate("AppNav");
+        }
+      })
+      .catch((err) => console.log(err));
   };
+  const [LoginStatusColor, setLoginStatusColor] = useState(Colors.primary);
+
   return (
     <Screen>
       <View style={styles.flexGrowCenter}>
@@ -91,7 +98,7 @@ export default function LoginScreen({ navigation, ...props }) {
             autoCorrect={false}
             secureTextEntry
           />
-          <SubmitButton title="Login" />
+          <SubmitButton title="Login" color={LoginStatusColor} />
           <View style={styles.flexRow}>
             <SubTitle color={Colors["grey-8"]} padding={4} size={14}>
               Don't have an account ? -
@@ -138,3 +145,7 @@ const styles = StyleSheet.create({
     padding: 4,
   },
 });
+
+function handleError(response) {
+  return response.json();
+}

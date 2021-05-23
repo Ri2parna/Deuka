@@ -1,22 +1,20 @@
 import React from "react";
-import { Text, View, Image, StyleSheet } from "react-native";
-
+import { useNavigation } from "@react-navigation/native";
 import CardContainer from "./cardcontainer";
 import CardImage from "./cardimage";
 import CardText from "./cardtext";
 
 const Card = ({
-  id,
-  mr,
+  _id,
   title,
   authorName,
   captionImageUrl,
   subTitle,
-  onPress,
-  ...props
+  ...others
 }) => {
+  let navigation = useNavigation();
   return (
-    <CardContainer mr={mr} onPress={onPress}>
+    <CardContainer onPress={() => navigation.navigate("PostContent", { pid: _id })}>
       <CardText title={title} subTitle={subTitle} authorName={authorName} />
       <CardImage captionImageUrl={captionImageUrl} />
     </CardContainer>

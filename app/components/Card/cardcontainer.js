@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 const cardcontainer = ({ children, onPress, ...props }) => {
@@ -14,12 +14,12 @@ export default cardcontainer;
 
 const styles = StyleSheet.create({
   CardContainer: {
-    backgroundColor: "#F5F5F5",
     borderRadius: 16,
-    display: "flex",
+    marginHorizontal: 8,
+    padding: 8,
+    backgroundColor: "#f1e6d6",
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 2,
-    padding: 16,
+    alignItems: "center"
   },
 });

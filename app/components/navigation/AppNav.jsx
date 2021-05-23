@@ -30,8 +30,9 @@ export default function AppNav() {
         name="Home"
         component={HomeScreen}
         options={({ navigation }) => ({
-          headerTitle: "Deuka 🕊",
-          headerTitleAlign: "left",
+          // headerTitle: "Deuka 🕊",
+          // headerTitleAlign: "left",
+          headerShown: false,
         })}
       />
       <Drawer.Screen name="Notifications" component={NotificationsScreen} />

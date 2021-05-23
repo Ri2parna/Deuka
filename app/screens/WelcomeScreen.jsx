@@ -41,7 +41,7 @@ function WelcomeScreen({ navigation }) {
         <AppButton
           title="Register"
           onPress={() => navigation.navigate("Register")}
-          color="secondary"
+          color={Colors.secondary}
         />
       </View>
     </View>

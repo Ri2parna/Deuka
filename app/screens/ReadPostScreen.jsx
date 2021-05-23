@@ -14,38 +14,14 @@ import { Dimensions } from "react-native";
 const ShimmerPlaceholder = createShimmerPlaceholder(LinearGradient);
 
 const ReadPostScreen = ({ navigation, route }) => {
-  const {
-    title,
-    subTitle,
-    body,
-    createdAt,
-    authorName = "Rituparna Das",
-    authorId,
-  } = route.params;
+  const { pid } = route.params;
   return (
-    <ScrollView
-      contentContainerStyle={{
-        padding: 16,
-      }}
-    >
-      <Title size={32}>{title}</Title>
-      {/* author details */}
-      <Details
-        createdAt={createdAt}
-        authorName={authorName}
-        navigation={navigation}
-        authorId={authorId}
-      />
-      <SubTitle size={24}>{subTitle}</SubTitle>
-      <View
-        style={{
-          minHeight: Dimensions.get("window").height * 0.42,
-        }}
-      >
-        <BitterFontText>{body}</BitterFontText>
+    <ScrollView contentContainerStyle={{ padding: 16 }}>
+      <CalloutImage />
+      <View style={styles.heightMin}>
+        <BitterFontText>{text}</BitterFontText>
       </View>
       <View style={[styles.bottomActions]} />
-
       <FeaturedPosts />
     </ScrollView>
   );
@@ -67,7 +43,22 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     marginRight: 4,
   },
+  heightMin: { minHeight: Dimensions.get("window").height * 0.42 },
 });
+
+const CalloutImage = () => {
+  const image_source = {
+    uri: "https://i.pravatar.cc/200",
+  };
+  return (
+    <ShimmerPlaceholder visible={true}>
+      <Image
+        style={{ height: Dimensions.get("window").height * 0.24 }}
+        source={image_source}
+      />
+    </ShimmerPlaceholder>
+  );
+};
 
 const text = `It was the best of all times or the worst of all times. But worst of all is when a child wants to “help” you with something. You know that accepting their help will quadruple the time, energy, and resources required to get anything done. You realise that it’d be far simpler to do the job yourself. You’re aware that they’ll get bored halfway through and give up. But what are you supposed to tell them? They’re so enthusiastic, so earnest, so eager to contribute. So you take a deep breath, grit your teeth into a smile, and watch them make a mess.
 If you’ve been watching the trajectory of anti-racism over the past few years, you can probably relate. It’s become an exercise in patiently explaining things that should be painfully obvious. It’s an endless parade of clickbait headlines and performative outrage. It’s dominated by people who seem as if they want to help but are hopelessly confused about how to do so.

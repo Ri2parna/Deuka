@@ -7,7 +7,7 @@ import useTime from "../hooks/useTime";
 import Colors from "../config/colors";
 import PublicoText from "./PublicoText";
 
-const GreetingSection = ({ navigation }) => {
+const GreetingSection = () => {
   const [Username, setUsername] = useState("Rituparna");
   // write a function for passing username or send username as props to this component
   const greeting = useTime(); // loads the salutation as text

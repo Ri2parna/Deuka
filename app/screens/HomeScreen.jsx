@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FlatList } from "react-native-gesture-handler";
 import * as Font from "expo-font";
-import { Text, StatusBar, StyleSheet, ActivityIndicator } from "react-native";
+import { View, StatusBar, StyleSheet, ActivityIndicator } from "react-native";
 
 import Screen from "../components/Screen";
 import Card from "../components/Card";
@@ -27,11 +27,8 @@ const HomeScreen = ({ navigation }) => {
     loadFont().then(setFontLoadState);
     fetch(BASE_URL + API_VERSION + "posts")
       .then(function handleResponse(response) {
-        if (response.ok) {
-          return response.json();
-        } else {
-          handleError(response);
-        }
+        if (response.ok) return response.json();
+        else handleError(response);
       })
       .then((json) => setData(json))
       .catch((error) => console.error(error))
@@ -45,51 +42,26 @@ const HomeScreen = ({ navigation }) => {
     })
   );
 
-  if (!fontsLoaded || isLoading)
-    return (
-      <Screen>
-        <ActivityIndicator size={60} color={Colors.secondary} />
-      </Screen>
-    );
+  if (!fontsLoaded || isLoading) return <LoadingScreen />;
 
   return (
     <FlatList
-      style={{ backgroundColor: Colors.white }}
+      style={styles.bg}
       data={Data}
-      renderItem={({ item }) => {
-        return (
-          <Card
-            id={item._id}
-            postId={item.postId}
-            createdAt={item.createdAt}
-            title={item.title}
-            authorId={item.userId}
-            authorName={item.authorName}
-            captionImageUrl={item.captionImageUrl}
-            subTitle={item.subTitle}
-            onPress={() => {
-              navigation.navigate("PostContent", item);
-            }}
-          />
-        );
-      }}
+      renderItem={({ item }) => <Card {...item} />}
       keyExtractor={(item) => item._id}
-      ListEmptyComponent={() => {
-        return <SubTitle>Nothing to Display for now</SubTitle>;
-      }}
-      ListHeaderComponent={() => (
-        <>
-          <GreetingSection navigation={navigation} />
-          <PublicoText size={21} style={styles.headline}>
-            For You
-          </PublicoText>
-        </>
-      )}
+      ListEmptyComponent={NoPosts}
+      ListHeaderComponent={Header}
       extraData={navigation}
+      ItemSeparatorComponent={Divider}
     />
   );
 };
+
 const styles = StyleSheet.create({
+  bg: {
+    backgroundColor: Colors.yellow,
+  },
   headline: {
     padding: 16,
     paddingBottom: 8,
@@ -106,3 +78,30 @@ module.exports = { HomeScreen };
 function handleError(response) {
   return -1;
 }
+
+const NoPosts = () => <SubTitle>Nothing to Display for now</SubTitle>;
+
+const Header = () => (
+  <View style={styles.statusbarFix}>
+    <GreetingSection />
+    <PublicoText size={21} style={styles.headline}>
+      Start Reading
+    </PublicoText>
+  </View>
+);
+
+const LoadingScreen = () => (
+  <Screen>
+    <ActivityIndicator size={60} color={Colors.secondary} />
+  </Screen>
+);
+
+const Divider = () => (
+  <View
+    style={{
+      borderBottomColor: "aliceblue",
+      borderBottomWidth: 1,
+      marginHorizontal: 20,
+    }}
+  />
+);

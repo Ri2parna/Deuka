@@ -15,48 +15,16 @@ export default function CardText({
 }) {
   const [Loading, setLoading] = useState(false);
   const [User, setUser] = useState({});
-  // useEffect(() => {
-  //   fetch("https://jsonplaceholder.typicode.com/users/" + userId)
-  //     .then((response) => response.json())
-  //     .then((json) => setUser(json))
-  //     .catch((error) => console.error(error))
-  //     .finally(() => setLoading(false));
-  // });
+  let imageUrl = "https://i.pravatar.cc/200" + "?u=" + User.username;
+
   return (
     <View style={styles.flexCenter}>
-      <ShimmerPlaceholder
-        style={{ width: "100%", marginBottom: 2 }}
-        visible={!Loading}
-      >
-        <Text style={{ fontWeight: "bold", fontSize: 20 }}>{title}</Text>
-      </ShimmerPlaceholder>
+      <Text style={{ fontWeight: "700", fontSize: 20 }}>{title}</Text>
+      <SubTitle>{subTitle}</SubTitle>
       <View style={styles.flexRowCenter}>
-        <View style={{ height: 28, width: 28, borderRadius: 10 }}>
-          <ShimmerPlaceholder
-            width={28}
-            height={28}
-            style={{ borderRadius: 8 }}
-            visible={!Loading}
-          >
-            <Image
-              style={styles.avatar}
-              source={{
-                uri: "https://i.pravatar.cc/200" + "?u=" + User.username,
-              }}
-            />
-          </ShimmerPlaceholder>
-        </View>
-
-        <ShimmerPlaceholder visible={!Loading}>
-          <SubTitle color={Colors["grey-7"]}>{authorName}</SubTitle>
-        </ShimmerPlaceholder>
+        <Image style={styles.avatar} source={{ uri: imageUrl }} />
+        <SubTitle color={Colors["grey-3"]}>{authorName}</SubTitle>
       </View>
-      <ShimmerPlaceholder
-        style={{ width: "100%", marginBottom: 2 }}
-        visible={!Loading}
-      >
-        <SubTitle>{subTitle}</SubTitle>
-      </ShimmerPlaceholder>
     </View>
   );
 }

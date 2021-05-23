@@ -4,15 +4,9 @@ import { View } from "react-native";
 import AppButton from "../components/AppButton";
 import Screen from "../components/Screen";
 import Colors from "../config/colors";
-
+import {removeData} from "../utils/asyncStorage";
 export default function SettingsScreen({ navigation }) {
-  const removeValue = async () => {
-    try {
-      await AsyncStorage.removeItem("isUserLoggedIn");
-    } catch (e) {
-      console.log("There has been an error"); // error
-    }
-  };
+  
   return (
     <View
       style={{

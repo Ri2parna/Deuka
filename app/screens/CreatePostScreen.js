@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useReducer } from "react";
-import { Dimensions, StatusBar, StyleSheet } from "react-native";
+import { KeyboardAvoidingView } from "react-native";
+import { View, Dimensions, StatusBar, StyleSheet } from "react-native";
+import { TextInput } from "react-native-gesture-handler";
 import * as Yup from "yup";
 import { API_VERSION, BASE_URL } from "../../settings";
 
@@ -43,7 +45,13 @@ export default function CreatePostScreen() {
   };
 
   return (
-    <Screen>
+    <KeyboardAvoidingView
+      style={{
+        paddingHorizontal: 8,
+        height: Dimensions.get("window").height,
+        paddingBottom: 64,
+      }}
+    >
       <AppForm
         initialValues={{ title: "", subtitle: "" }}
         onSubmit={handleSubmit}
@@ -57,8 +65,9 @@ export default function CreatePostScreen() {
           numberOfLines={3}
           placeholder="body"
         />
+        <View style={{ flex: 1 }} />
         <SubmitButton title="Post" />
       </AppForm>
-    </Screen>
+    </KeyboardAvoidingView>
   );
 }

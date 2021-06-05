@@ -32,7 +32,7 @@ export default function SettingsScreen({ navigation }) {
           mr={16}
           color={"error"}
           title="SignOut"
-          onPress={() => removeValue()}
+          onPress={() => removeData()}
         />
       </View>
     </View>

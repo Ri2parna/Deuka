@@ -1,6 +1,8 @@
 # Deuka
 making reading comfortable and ad-free
 
+> ## The code isn't working anymore
+
 A project aimed at creating a better alternative to other reading mediums. currently in the MVP phase, 
 It uses Expo - an abstraction layer over the React Native Framework that helps with various issues with configuring react native applications. 
 
